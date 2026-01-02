@@ -1,10 +1,17 @@
+'use client';
+
 import Box from '@mui/material/Box';
 import {ChatPost} from "@/widgets/chatPost/ui/ChatPost";
 import styles from './chat.module.scss'
 import Typography from "@mui/material/Typography";
-
+import ChatInput from './ChatInput';
 
 function Chat() {
+  const handleSendMessage = (text: string, file?: File) => {
+    // Здесь будет логика отправки сообщения
+    console.log('Sending message:', text, file);
+  };
+
   return (
     <Box
       sx={{
@@ -44,10 +51,9 @@ function Chat() {
           <ChatPost name='Sidorov' text="message from Sidorov"/>
           <ChatPost name='Sidorov' text="message from Sidorov"/>
           <ChatPost name='Sidorov' text="message from Sidorov"/>
-          <ChatPost name='Sidorov' text="message from Sidorov"/>
-          <ChatPost name='Sidorov' text="message from Sidorov"/>
-          <ChatPost name='Sidorov' text="message from Sidorov"/>
         </Box>
+
+        <ChatInput onSendMessage={handleSendMessage} />
 
       </Box>
 

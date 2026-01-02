@@ -6,22 +6,15 @@ import styles from './mainFrame.module.scss'
 function Description() {
   return <Box
     sx={{
-      backgroundColor: 'background.paper',
-      padding: 1,
-      marginLeft: 1,
+      marginLeft: 2,
       flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
     }}
   >
-    <Typography sx={{
-      margin: "16px auto"
-    }} className={styles.title} color='text.primary'>Реестр страниц раздела АР</Typography>
-    <ProjectInfo></ProjectInfo>
-    <Typography
-      sx={{
-        margin: "16px auto"
-      }}
-      className={styles.title} color='text.primary'>Версии техничесого задания</Typography>
-    <ProjectInfo></ProjectInfo>
+
+    <ProjectInfo title={'Реестр страниц раздела АР'}></ProjectInfo>
+    <ProjectInfo title={'Версии технических заданий'}></ProjectInfo>
   </Box>
 }
 

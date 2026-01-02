@@ -8,5 +8,21 @@
 .table {
   padding: 8px;
   box-sizing: border-box;
-  margin-bottom: 8px;
+
+  &:first-child {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin-bottom: 8px;
+  }
+  &:last-child {
+    max-height: 300px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+}
+.title {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }

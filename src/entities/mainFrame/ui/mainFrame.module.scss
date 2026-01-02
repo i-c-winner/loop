@@ -1,11 +1,18 @@
 .mainFrame {
   height: 100%;
   display: flex;
+
   .description {
     flex: 1;
+
+    .projectInfo {
+      height: 500px;
+    }
   }
+
   .legend {
     width: 100%;
+    margin-top: 24px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     display: flex;
@@ -14,17 +21,17 @@
 }
 
 .timeline {
-    margin-top: 0;
+  margin-top: 0;
+
   .timelineLeft {
     color: #0b0bef;
   }
+
   .timelineRight {
     color: #f11c24;
   }
-  }
-.title {
-  width: 250px;
-  box-sizing: border-box;
 }
+
+
 
 
