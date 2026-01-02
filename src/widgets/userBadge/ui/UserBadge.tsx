@@ -13,7 +13,11 @@ function UserBadge(props: IProps) {
   const size=props.size? props.size:CONSTANTS.SIZE.AVATAR
   return <Box className={styles.userBadge}
   >
-<Avatar   sx={{ width: size, height: size }}/>
+<Avatar   sx={{
+  width: size,
+  height: size,
+  marginRight: `${size / 2}px`
+}}/>
     <Typography>{props.name}</Typography>
   </Box>
 }

@@ -1,16 +1,24 @@
 import styles from './header.module.scss'
 import Box from '@mui/material/Box';
+import Typography from "@mui/material/Typography";
+
 function Header() {
-  return <Box sx={{
+  return <Box
+    sx={{
     padding: 1,
   }}>
     <Box
-      className={styles.header}
       sx={{
-    backgroundColor: 'background.paper',
-    }}>
-     <Box >Header</Box>
+        color: 'text.primary',
+        backgroundColor: 'background.paper',
+      }}>
+      <Typography
+      className={styles.header}
+      >
+      HEADER
+      </Typography>
     </Box>
   </Box>;
 }
+
 export {Header}

@@ -9,7 +9,7 @@ function ListProjects() {
   >
     <Box
       sx={{
-        color: 'text.primary',
+        color: 'primary',
         backgroundColor: 'background.paper',
       }}
       className={styles.listProjectsWrapper}

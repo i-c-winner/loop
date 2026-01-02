@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import {UserBadge} from "@/widgets/userBadge/ui/UserBadge"
 import styles from './chatPost.module.scss'
 
 export default function ChatPost(props: {
@@ -12,9 +11,10 @@ export default function ChatPost(props: {
 }) {
 
   return (
-    <Stack className={styles.chatPost}  direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      <Typography variant='body1'>{props.name}</Typography>
+    <Stack
+      sx={{alignSelf: props.myPost? 'flex-end': 'flex-start'}}
+      className={styles.chatPost}  color='text.primary' direction="row" spacing={2}>
+      <UserBadge name={props.name.slice(0, 1)[0]}/>
       <Box className={`${styles.text} ${props.myPost? styles.myPost: ''}`}>{props.text}</Box>
     </Stack>
   );

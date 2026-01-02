@@ -7,7 +7,7 @@ const config_theme = {
       styleOverrides: {
         root: {
           color: 'text.primary'
-        }
+        },
       }
     }
   },

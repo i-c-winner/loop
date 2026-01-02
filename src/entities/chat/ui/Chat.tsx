@@ -1,14 +1,13 @@
 import Box from '@mui/material/Box';
 import {ChatPost} from "@/widgets/chatPost/ui/ChatPost";
-import Typography from "@mui/material/Typography";
 import styles from './chat.module.scss'
+
 
 function Chat() {
   return (
     <Box
       sx={{
         padding: 1,
-        width: '500px'
       }}
 
     >

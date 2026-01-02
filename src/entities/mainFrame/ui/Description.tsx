@@ -8,12 +8,19 @@ function Description() {
     sx={{
       backgroundColor: 'background.paper',
       padding: 1,
+      marginLeft: 1,
       flexGrow: 1,
     }}
   >
-    <Typography classes={styles.title} color='text.primary'>Реестр страниц раздела АР</Typography>
+    <Typography sx={{
+      margin: "16px auto"
+    }} className={styles.title} color='text.primary'>Реестр страниц раздела АР</Typography>
     <ProjectInfo></ProjectInfo>
-    <Typography>Версии техничесого задания</Typography>
+    <Typography
+      sx={{
+        margin: "16px auto"
+      }}
+      className={styles.title} color='text.primary'>Версии техничесого задания</Typography>
     <ProjectInfo></ProjectInfo>
   </Box>
 }

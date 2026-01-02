@@ -7,7 +7,7 @@ import styles from './listProjects.module.scss'
 const nodes=['pzu', 'ar', 'nvk', 'kz0']
 export default function BasicSimpleTreeView() {
   return (
-    <Box className={styles.list}>
+    <Box className={styles.list} sx={{ color: 'text.primary'}}>
       <SimpleTreeView defaultExpandedItems={nodes}>
         <TreeItem itemId="pzu" label="ПЗ">
           <UserBadge name={'Petrov'}/>

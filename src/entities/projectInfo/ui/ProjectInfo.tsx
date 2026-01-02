@@ -33,7 +33,7 @@ function ProjectInfo() {
           <td><Done/></td>
           <td>03.02.25</td>
           <td>Исполнитель</td>
-          <td>PETROPV</td>
+          <td>PETROV</td>
           <td>Открыть</td>
           <td>Скачать</td>
         </tr>
