@@ -1,11 +1,15 @@
 const config_theme = {
-    typography: {
-      fontFamily: ['gg sans', 'Roboto'].join(','),
-    },
+  typography: {
+    fontFamily: ['gg sans', 'Roboto'].join(',')
+  },
   components: {
-      MuiTypography: {
-        color: 'text.primary'
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: 'text.primary'
+        }
       }
+    }
   },
     palette: {
       text: {
@@ -13,7 +17,8 @@ const config_theme = {
         secondary: '#86888e'
       },
       background: {
-        paper: '#202024'
+        paper: '#202024',
+        default: '#121214'
       }
     }
 }

@@ -1,16 +1,23 @@
 .mainFrame {
   height: 100%;
   display: flex;
+  .description {
+    flex: 1;
+  }
+  .timeline {
+    margin-top: 0;
   }
 
-.timeline {
-  margin-top: 0;
+  .timelineLeft {
+    color: #0b0bef;
   }
+  .timelineRight {
+    color: #f11c24;
+  }
+  }
+.title {
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
 
-.timelineLeft {
-  color: #0b0bef;
-}
-.timelineRight {
-  color: #f11c24;
-}
 
