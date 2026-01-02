@@ -1,0 +1,16 @@
+.chatPost {
+  padding: 16px;
+
+  .text {
+    padding: 8px;
+    background: grey;
+    border-radius: 8px;
+    color: white;
+    &.myPost {
+      align-self: flex-end;
+      background: blue;
+    }
+  }
+
+}
+
