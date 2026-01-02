@@ -21,18 +21,22 @@ const rightColor='green'
 
 function TimeLine() {
   return (
-    <Box sx={{
+    <Box
+      sx={{
       minWidth: '500px',
       boxSizing: 'border-box',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
     }}>
-      <Box sx={{
+      <Box
+        className={styles.box}
+        sx={{
         flex: 1,
         overflowY: 'auto',
         padding: 1,
-        paddingTop: 0
+        paddingTop: 0,
+
       }}>
         <Timeline
           position="right"
@@ -103,7 +107,9 @@ function TimeLine() {
         </Timeline>
       </Box>
 
-      <Box sx={{
+      <Box
+        className={styles.box}
+        sx={{
         height: '50%',
         overflowY: 'auto',
         borderRadius: '4px',
