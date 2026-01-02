@@ -7,7 +7,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
+import styles from  './mainFrame.module.scss'
 
 const leftColor='red'
 const rightColor='green'
@@ -30,15 +30,19 @@ function TimeLine() {
         height: '100%',
          backgroundColor: 'background.paper',
         '& .MuiTimelineItem-root': {
-          boxSizing: 'border-box', // обязательно для каждого элемента
-          padding: '8px 0',         // или что тебе нужно
+          boxSizing: 'border-box',
+          padding: '8px 0',
         },
         '& .MuiTimelineItem-root:before': {
           display: 'none', // убираем служебную колонку MUI
         },
       }}
     >
-      {/* Слева */}
+      <Box className={styles.legend}>
+        <Typography color={leftColor}>Переденно от ГИП</Typography>
+        <Typography color='text.primary' >/</Typography>
+        <Typography color={rightColor}>Передано от исполнителя</Typography>
+      </Box>
       <TimelineItem position="left">
         <TimelineOppositeContent color="textSecondary">
           10.01.2025

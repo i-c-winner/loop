@@ -11,11 +11,15 @@ function Header() {
       sx={{
         color: 'text.primary',
         backgroundColor: 'background.paper',
-      }}>
-      <Typography
+      }}
       className={styles.header}
+    >
+      <Typography
       >
       HEADER
+      </Typography>
+      <Typography>
+        Строительство производственного здания по адресу: ул.Ленина 15А
       </Typography>
     </Box>
   </Box>;

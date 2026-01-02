@@ -2,7 +2,9 @@
   padding: 16px;
 
 
+
   .text {
+    width: 250px;
     padding: 8px;
     background: grey;
     border-radius: 8px;
@@ -12,6 +14,8 @@
       background: blue;
     }
   }
-
+  .answer {
+    align-self: flex-end;
+  }
 }
 

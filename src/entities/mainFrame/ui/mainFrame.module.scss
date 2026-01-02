@@ -4,10 +4,17 @@
   .description {
     flex: 1;
   }
-  .timeline {
-    margin-top: 0;
+  .legend {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
   }
+}
 
+.timeline {
+    margin-top: 0;
   .timelineLeft {
     color: #0b0bef;
   }
