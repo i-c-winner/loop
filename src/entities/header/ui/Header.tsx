@@ -14,12 +14,11 @@ function Header() {
       }}
       className={styles.header}
     >
-      <Typography
-      >
-      HEADER
-      </Typography>
-      <Typography>
+      <Typography variant={'h4'} color={'primary'} >
         Строительство производственного здания по адресу: ул.Ленина 15А
+      </Typography>
+      <Typography variant={"body1"} color={'primary'}>
+        Статистика по разделу АР
       </Typography>
     </Box>
   </Box>;

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import List_ from "@/entities/listProjects/ui/List";
+import Typography from "@mui/material/Typography";
 import styles from './listProjects.module.scss'
 
 function ListProjects() {
@@ -14,6 +15,7 @@ function ListProjects() {
       }}
       className={styles.listProjectsWrapper}
     >
+      <Typography color={'primary'} className={styles.title}>Список разделов</Typography>
       <List_></List_>
 
     </Box>

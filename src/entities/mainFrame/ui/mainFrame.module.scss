@@ -18,35 +18,29 @@
     display: flex;
     justify-content: space-between;
   }
-}
-
-.timeline {
-  margin-top: 0;
-
-  .timelineLeft {
-    color: #0b0bef;
+  .title {
+    width: 100%;
+    text-align: center;
+    margin: 16px 0;
   }
+  .box{
+    &:first-child {
+      overflow-y: hidden;
+      min-height: 0;
+      flex: 1 1 auto;
 
-  .timelineRight {
-    color: #f11c24;
+    }
+    &:last-child {
+      max-height: 400px;
+      overflow-y: auto;
+      flex-shrink: 0;
+      padding: 8px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 }
-.box{
-&:first-child {
-  overflow-y: hidden;
-  min-height: 0;
-  flex: 1 1 auto;
 
-}
-&:last-child {
-  max-height: 400px;
-  overflow-y: auto;
-  flex-shrink: 0;
-  padding: 8px;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-}
 
 
 

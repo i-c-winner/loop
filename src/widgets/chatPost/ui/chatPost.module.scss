@@ -6,12 +6,10 @@
   .text {
     width: 250px;
     padding: 8px;
-    background: grey;
     border-radius: 8px;
-    color: white;
     &.myPost {
       align-self: flex-end;
-      background: blue;
+
     }
   }
   .answer {

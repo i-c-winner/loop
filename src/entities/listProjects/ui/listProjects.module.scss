@@ -1,6 +1,12 @@
 .listProjectsWrapper {
   height: calc(100vh - 200px);
   overflow-y: auto;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    margin: 16px 0;
+  }
 }
 
 .list{

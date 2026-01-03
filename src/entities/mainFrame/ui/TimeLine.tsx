@@ -36,7 +36,6 @@ function TimeLine() {
         overflowY: 'auto',
         padding: 1,
         paddingTop: 0,
-
       }}>
         <Timeline
           position="right"
@@ -54,6 +53,7 @@ function TimeLine() {
             },
           }}
         >
+          <Typography color={'primary'} className={styles.title}>Обмен файлами</Typography>
           <Box className={styles.legend}>
             <Typography color={leftColor}>Переденно от ГИП</Typography>
             <Typography color='text.primary' >/</Typography>

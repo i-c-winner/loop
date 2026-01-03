@@ -27,10 +27,8 @@ function Chat() {
 
         <Box className={styles.box}
         >
-          <Typography variant='h5'  color='text.primary'
-          sx={{
-            alignSelf: 'center',
-          }}
+          <Typography   color='primary'
+          className={styles.title}
           >Общий чат</Typography>
           <ChatPost myPost={true} name='Ivanov' text="message from Ivanov"/>
           <ChatPost name='Petrov' text="message from Petrov"/>

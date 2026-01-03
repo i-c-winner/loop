@@ -12,12 +12,15 @@ const config_theme = {
     }
   },
     palette: {
+      primary: {
+        main: '#e8f9de'
+      },
       text: {
-        primary: '#dededf',
+        primary: '#f1d7e2',
         secondary: '#86888e'
       },
       background: {
-        paper: '#202024',
+        paper: '#2f312e',
         default: '#121214'
       }
     }
