@@ -13,7 +13,7 @@ const config_theme = {
   },
     palette: {
       primary: {
-        main: '#e8f9de'
+        main: '#a8fffb'
       },
       text: {
         primary: '#f1d7e2',

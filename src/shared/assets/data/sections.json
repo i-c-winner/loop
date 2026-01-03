@@ -1,0 +1,122 @@
+[
+  {
+    "section": "Общие данные",
+    "approved": "approved",
+    "lastVersionDate": "2025-03-14",
+    "executor": "Иванов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Архитектурные решения",
+    "approved": "not approved",
+    "lastVersionDate": "2025-06-02",
+    "executor": "Петров",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Конструктивные решения",
+    "approved": "approved",
+    "lastVersionDate": "2025-01-27",
+    "executor": "Сидоров",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Технологические решения",
+    "approved": "not approved",
+    "lastVersionDate": "2025-09-10",
+    "executor": "Кузнецов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Водоснабжение и канализация",
+    "approved": "approved",
+    "lastVersionDate": "2025-04-18",
+    "executor": "Смирнов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Отопление, вентиляция и кондиционирование",
+    "approved": "not approved",
+    "lastVersionDate": "2025-11-05",
+    "executor": "Попов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Электроснабжение и электроосвещение",
+    "approved": "approved",
+    "lastVersionDate": "2025-02-09",
+    "executor": "Васильев",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Слаботочные системы",
+    "approved": "not approved",
+    "lastVersionDate": "2025-07-21",
+    "executor": "Морозов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Газоснабжение",
+    "approved": "approved",
+    "lastVersionDate": "2025-05-30",
+    "executor": "Новиков",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Наружные инженерные сети",
+    "approved": "not approved",
+    "lastVersionDate": "2025-08-12",
+    "executor": "Фёдоров",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Генеральный план и транспорт",
+    "approved": "approved",
+    "lastVersionDate": "2025-10-03",
+    "executor": "Михайлов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Организация строительства",
+    "approved": "not approved",
+    "lastVersionDate": "2025-01-15",
+    "executor": "Алексеев",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Мероприятия по обеспечению пожарной безопасности",
+    "approved": "approved",
+    "lastVersionDate": "2025-06-28",
+    "executor": "Орлов",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Мероприятия по охране окружающей среды",
+    "approved": "not approved",
+    "lastVersionDate": "2025-09-19",
+    "executor": "Зайцев",
+    "open": "open",
+    "download": "download"
+  },
+  {
+    "section": "Сметная документация",
+    "approved": "approved",
+    "lastVersionDate": "2025-12-07",
+    "executor": "Белов",
+    "open": "open",
+    "download": "download"
+  }
+]
