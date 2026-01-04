@@ -1,23 +1,8 @@
 import {Box, List, ListItem, Button, Typography} from '@mui/material';
 import styles from './listProjects.module.scss'
+import {CONSTANTS} from "@/shared/config/constants/constant";
 
-const nodes= [
-  "Общие данные",
-  "Архитектурные решения",
-  "Конструктивные решения",
-  "Технологические решения",
-  "Водоснабжение и канализация",
-  "Отопление, вентиляция и кондиционирование",
-  "Электроснабжение и электроосвещение",
-  "Слаботочные системы",
-  "Газоснабжение",
-  "Наружные инженерные сети",
-  "Генеральный план и транспорт",
-  "Организация строительства",
-  "Мероприятия по обеспечению пожарной безопасности",
-  "Мероприятия по охране окружающей среды",
-  "Сметная документация"
-]
+const nodes= Object.values(CONSTANTS.SECTIONS)
 export default function BasicSimpleTreeView() {
   return (
     <Box className={styles.list} sx={{ color: 'text.primary'}}>

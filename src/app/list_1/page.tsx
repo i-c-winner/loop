@@ -16,10 +16,10 @@ export default function List_1 () {
   >
     <Box
       sx={{
-        flex: 1,
         overflowY: 'auto',
         padding: 1,
         paddingTop: 0,
+        width: '300px',
       }}>
       <Timeline
         position="right"
@@ -85,17 +85,20 @@ export default function List_1 () {
       </Timeline>
     </Box>
     <Box
-    sx={{
-      backgroundColor: 'background.paper',
-      width: '80%',
-      height: '80vh',
-    }}
+      className={styles.swgWrapper}
     >
-      <Typography color='text.secondary' variant='h4'>Архитектурные решения. Версия 4 / 15.03.25
-      </Typography>
       <Box
-      className={styles.swg}>
+        className={styles.window}
+        sx={{
+        backgroundColor: 'background.paper',
+      }}>
+        <Typography color='text.secondary' variant='h4'>Архитектурные решения. Версия 4 / 15.03.25
+        </Typography>
+        <Box
+          className={styles.swg}>
+        </Box>
       </Box>
     </Box>
   </Box>
 }
+
