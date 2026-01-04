@@ -1,8 +1,5 @@
 import "../../shared/styles/globals.css";
-import {Header} from "@/entities/header/ui/Header";
-import {Chat} from "@/entities/chat/ui/Chat";
 import Box from "@mui/material/Box";
-import {ListProjects} from "@/entities/listProjects/ui/ListProjects";
 
 export default function RootLayout({
                                      children,
@@ -13,11 +10,7 @@ export default function RootLayout({
     <Box
       className="wrapper"
     >
-      <Box className="main">
-        <ListProjects></ListProjects>
-        <Chat/>
         {children}
-      </Box>
     </Box>
   );
 }

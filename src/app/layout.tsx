@@ -1,4 +1,6 @@
-import {MyThemeProvider} from "@/app/providers/MyThemeProvider";
+import {ThemeRegistry} from "@/app/theme/ThemeRegistry";
+import {Header} from "@/entities/header/ui/Header";
+import {Footer} from "@/entities/footer/footer";
 
 export default function RootLayout({
                                      children,
@@ -8,9 +10,11 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body >
-    <MyThemeProvider>
+    <ThemeRegistry>
+      <Header />
       {children}
-    </MyThemeProvider>
+      <Footer/>
+    </ThemeRegistry>
     </body>
     </html>
   );

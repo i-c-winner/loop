@@ -1,27 +1,38 @@
-import Box from '@mui/material/Box';
-import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
-import { TreeItem } from '@mui/x-tree-view/TreeItem';
-import {UserBadge} from "@/widgets/userBadge/ui/UserBadge"
+import {Box, List, ListItem, Button, Typography} from '@mui/material';
 import styles from './listProjects.module.scss'
 
-const nodes=['pzu', 'ar', 'nvk', 'kz0']
+const nodes= [
+  "Общие данные",
+  "Архитектурные решения",
+  "Конструктивные решения",
+  "Технологические решения",
+  "Водоснабжение и канализация",
+  "Отопление, вентиляция и кондиционирование",
+  "Электроснабжение и электроосвещение",
+  "Слаботочные системы",
+  "Газоснабжение",
+  "Наружные инженерные сети",
+  "Генеральный план и транспорт",
+  "Организация строительства",
+  "Мероприятия по обеспечению пожарной безопасности",
+  "Мероприятия по охране окружающей среды",
+  "Сметная документация"
+]
 export default function BasicSimpleTreeView() {
   return (
     <Box className={styles.list} sx={{ color: 'text.primary'}}>
-      <SimpleTreeView defaultExpandedItems={nodes}>
-        <TreeItem itemId="pzu" label="ПЗ">
-          <UserBadge name={'Petrov'}/>
-        </TreeItem>
-        <TreeItem itemId="ar" label="ПЗУ">
-          <UserBadge name={'Ivanov'}/>
-        </TreeItem>
-        <TreeItem itemId="nvk" label="ГП">
-          <UserBadge name={'Кузнецов'}/>
-        </TreeItem>
-        <TreeItem itemId="kz0" label="АР">
-          <UserBadge name={'Карпенко'}/>
-        </TreeItem>
-      </SimpleTreeView>
+      <List>
+        {nodes.map((node) => (
+           <ListItem key={node}>
+             <Button
+               sx={{
+                 '&:hover': {
+                   backgroundColor: 'initial'
+               }}}
+               variant='text' disableFocusRipple={true}><Typography color='text.primary'>{node}</Typography></Button>
+             </ListItem>
+        ))}
+      </List>
     </Box>
   );
 }

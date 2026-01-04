@@ -10,6 +10,8 @@ import {UserBadge} from "@/widgets/userBadge/ui/UserBadge"
 import {OpenInNew, Download} from "@mui/icons-material";
 import styles from './table.module.scss'
 import Typography from "@mui/material/Typography";
+import CheckIcon from '@mui/icons-material/Check';
+import Close from '@mui/icons-material/Close';
 
 function ProjectInfo(props: {
   title: string,
@@ -48,6 +50,16 @@ function ProjectInfo(props: {
                 if (element === 'download') {
                   return <TableCell key={index}>
                     <Download key={index}/>
+                  </TableCell>
+                }
+                if (element==='approved') {
+                  return <TableCell key={index}>
+                    <CheckIcon color='success' key={index}/>
+                  </TableCell>
+                }
+                if (element==='not approved') {
+                  return <TableCell key={index}>
+                    <Close color='error' key={index}/>
                   </TableCell>
                 }
                 return <TableCell key={index}>{element}</TableCell>

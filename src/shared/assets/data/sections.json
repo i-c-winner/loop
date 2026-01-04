@@ -1,6 +1,6 @@
 [
   {
-    "section": "Общие данные",
+    "list": "Лист_1",
     "approved": "approved",
     "lastVersionDate": "2025-03-14",
     "executor": "Иванов",
@@ -8,114 +8,114 @@
     "download": "download"
   },
   {
-    "section": "Архитектурные решения",
+    "list": "Лист_2",
     "approved": "not approved",
     "lastVersionDate": "2025-06-02",
-    "executor": "Петров",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Конструктивные решения",
+    "list": "Лист_3",
     "approved": "approved",
     "lastVersionDate": "2025-01-27",
-    "executor": "Сидоров",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Технологические решения",
+    "list": "Лист_4",
     "approved": "not approved",
     "lastVersionDate": "2025-09-10",
-    "executor": "Кузнецов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Водоснабжение и канализация",
+    "list": "Лист_5",
     "approved": "approved",
     "lastVersionDate": "2025-04-18",
-    "executor": "Смирнов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Отопление, вентиляция и кондиционирование",
+    "list": "Лист_6",
     "approved": "not approved",
     "lastVersionDate": "2025-11-05",
-    "executor": "Попов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Электроснабжение и электроосвещение",
+    "list": "Лист_7",
     "approved": "approved",
     "lastVersionDate": "2025-02-09",
-    "executor": "Васильев",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Слаботочные системы",
+    "list": "Лист_8",
     "approved": "not approved",
     "lastVersionDate": "2025-07-21",
-    "executor": "Морозов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Газоснабжение",
+    "list": "Лист_9",
     "approved": "approved",
     "lastVersionDate": "2025-05-30",
-    "executor": "Новиков",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Наружные инженерные сети",
+    "list": "Лист_10",
     "approved": "not approved",
     "lastVersionDate": "2025-08-12",
-    "executor": "Фёдоров",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Генеральный план и транспорт",
+    "list": "Лист_11",
     "approved": "approved",
     "lastVersionDate": "2025-10-03",
-    "executor": "Михайлов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Организация строительства",
+    "list": "Лист_12",
     "approved": "not approved",
     "lastVersionDate": "2025-01-15",
-    "executor": "Алексеев",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Мероприятия по обеспечению пожарной безопасности",
+    "list": "Лист_13",
     "approved": "approved",
     "lastVersionDate": "2025-06-28",
-    "executor": "Орлов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Мероприятия по охране окружающей среды",
+    "list": "Лист_14",
     "approved": "not approved",
     "lastVersionDate": "2025-09-19",
-    "executor": "Зайцев",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   },
   {
-    "section": "Сметная документация",
+    "list": "Лист_15",
     "approved": "approved",
     "lastVersionDate": "2025-12-07",
-    "executor": "Белов",
+    "executor": "Иванов",
     "open": "open",
     "download": "download"
   }

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 function Header() {
   return <Box
     sx={{
-    padding: 1,
+      padding: 1,
   }}>
     <Box
       sx={{

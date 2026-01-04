@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import {ProjectInfo} from '@/entities/projectInfo/ui/ProjectInfo'
+import {ProjectInfo} from '@/entities/mainFrame/ui/ProjectInfo'
 import data from '../../../shared/assets/data/sections.json'
 import technicalTasks from '../../../shared/assets/data/technicalTasks.json'
 

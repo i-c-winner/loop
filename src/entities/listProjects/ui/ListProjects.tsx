@@ -16,7 +16,6 @@ function ListProjects() {
       className={styles.listProjectsWrapper}
     >
       <Typography color={'primary'} className={styles.title}>Список разделов</Typography>
-      <Typography color={'primary'} className={styles.title}>Сводная статистика</Typography>
       <List_></List_>
 
     </Box>
