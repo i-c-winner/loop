@@ -53,7 +53,7 @@ function TimeLine() {
             },
           }}
         >
-          <Typography color={'primary'} className={styles.title}>Обмен файлами</Typography>
+          <Typography color={'secondary'} className={styles.title}>Обмен файлами</Typography>
           <Box className={styles.legend}>
             <Typography color={leftColor}>Переденно от ГИП</Typography>
             <Typography color='text.primary' >/</Typography>
@@ -104,6 +104,7 @@ function TimeLine() {
             </TimelineSeparator>
             <TimelineContent color={leftColor}>Техническое задание. Версия 3</TimelineContent>
           </TimelineItem>
+
         </Timeline>
       </Box>
 
@@ -125,7 +126,7 @@ function TimeLine() {
           boxSizing: 'border-box',
         }}>
           <Typography className={styles.title}
-            color={'primary'}>Реестр переданых файлов</Typography>
+            color={'secondary'}>Реестр переданых файлов</Typography>
           <Table>
             <TableHead>
               <TableRow>

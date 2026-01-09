@@ -27,7 +27,7 @@ function Chat() {
 
         <Box className={styles.box}
         >
-          <Typography   color='primary'
+          <Typography   color='secondary'
           className={styles.title}
           >Общий чат</Typography>
           <ChatPost myPost={true} name='Ivanov' text="message from Ivanov"/>

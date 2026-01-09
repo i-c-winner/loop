@@ -104,4 +104,3 @@ export default function List_1 () {
     </Box>
   </Box>
 }
-

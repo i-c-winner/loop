@@ -15,7 +15,7 @@ function ListProjects() {
       }}
       className={styles.listProjectsWrapper}
     >
-      <Typography color={'primary'} className={styles.title}>Список разделов</Typography>
+      <Typography color={'secondary'} className={styles.title}>Список разделов</Typography>
       <List_></List_>
 
     </Box>

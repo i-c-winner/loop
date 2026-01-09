@@ -54,10 +54,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton color={'primary'} onClick={() => fileInputRef.current?.click()}>
+                <IconButton color={'secondary'} onClick={() => fileInputRef.current?.click()}>
                   <AttachFileIcon />
                 </IconButton>
-                <IconButton color={'primary'} onClick={handleSendMessage}>
+                <IconButton color={'secondary'} onClick={handleSendMessage}>
                   <SendIcon />
                 </IconButton>
               </InputAdornment>

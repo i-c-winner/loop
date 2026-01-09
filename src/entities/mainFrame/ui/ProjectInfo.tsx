@@ -29,7 +29,7 @@ function ProjectInfo(props: {
       <Typography sx={{
         margin: "16px auto",
         backgroundColor: 'background.paper',
-      }} className={styles.title} color='primary'>{props.title}</Typography>
+      }} className={styles.title} color='secondary'>{props.title}</Typography>
       <Table>
         <TableHead>
           <TableRow>
