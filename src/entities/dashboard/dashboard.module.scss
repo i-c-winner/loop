@@ -1,0 +1,12 @@
+.dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .mainDashboard {
+    width: 45%;
+  }
+  .dashboards {
+    width: 45%;
+  }
+}
