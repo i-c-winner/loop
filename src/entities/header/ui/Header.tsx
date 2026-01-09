@@ -34,10 +34,10 @@ function Header() {
           </Button>
         </ButtonGroup>
             <Box>
-        <Typography variant={'h4'} color={'primary'}>
+        <Typography variant={'h4'} color={'text.primary'}>
           Строительство производственного здания по адресу: ул.Ленина 15А
         </Typography>
-        <Typography variant={"body1"} color={'primary'}>
+        <Typography variant={"body1"} color={'text.primary'}>
           Статистика по разделу АР
         </Typography>
       </Box>

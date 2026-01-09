@@ -96,6 +96,9 @@ export default function List_1 () {
         </Typography>
         <Box
           className={styles.swg}>
+          <Typography
+            className={styles.swgText}
+            variant='body1' color='red'>Тут можно будет редактировать SWG файлы</Typography>
         </Box>
       </Box>
     </Box>

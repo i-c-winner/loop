@@ -13,15 +13,15 @@ const config_theme = {
   },
     palette: {
       primary: {
-        main: '#a8fffb'
+        main: '#f4f7f8'
       },
       text: {
-        primary: '#f1d7e2',
-        secondary: '#86888e'
+        primary: '#171616',
+        secondary: '#19191c'
       },
       background: {
-        paper: '#2f312e',
-        default: '#121214'
+        paper: '#ffffff',
+        default: '#eaf3ff'
       }
     }
 }

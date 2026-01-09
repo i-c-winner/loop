@@ -3,8 +3,6 @@ import {ProjectInfo} from '@/entities/mainFrame/ui/ProjectInfo'
 import data from '../../../shared/assets/data/sections.json'
 import technicalTasks from '../../../shared/assets/data/technicalTasks.json'
 
-console.log(data)
-
 function Description() {
   return <Box
     sx={{
