@@ -1,18 +1,33 @@
-import {Box, Typography} from "@mui/material";
-import styles from './dashboard.module.scss'
+'use client'
+import * as echarts from 'echarts';
+import {Box} from '@mui/material';
+import {useEffect, useRef} from "react";
+import {right} from "@popperjs/core";
 
-function Dashboard() {
-  return <Box className={styles.dashboard}>
-    <Box className={styles.mainDashboard}
-         sx={{
-           backgroundColor: 'background.paper',
-         }}
-    ><Typography color={'secondary'}>DASHBOARD</Typography></Box>
-    <Box
-      sx={{
-        backgroundColor: 'background.paper',
-      }}
-      className={styles.dashboards}></Box>
+type EChartsOption = echarts.EChartsOption;
+
+function Dashboard(props: {
+  size: number,
+  option: any
+}) {
+  const {size} = props;
+  const option = props.option as EChartsOption;
+  const refDashboard= useRef<HTMLDivElement|null>(null)
+  useEffect(() => {
+    if (refDashboard.current) {
+      const myChart=echarts.init(refDashboard.current)
+      myChart.setOption(option)
+    }
+
+  }, [])
+  return <Box ref={refDashboard}
+              sx={{
+                backgroundColor: 'background.paper',
+                marginRight: '10px',
+                minWidth: `${size}px`,
+                flexBasis: `${size}px`}}
+  >
+
 
 
   </Box>

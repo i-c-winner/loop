@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box'
-import {Dashboard} from '@/entities/dashboard/dashboard'
+import {DashboardBox} from '@/entities/dashboard/dashboardBox'
 import styles from './dashboards.module.scss'
 
 function Page() {
   return <Box className={styles.dashboards} >
-    <Dashboard />
+    <DashboardBox />
   </Box>
 }
 

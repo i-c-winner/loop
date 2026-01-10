@@ -1,12 +1,32 @@
-.dashboard {
+.dashboardBox {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
 
   .mainDashboard {
-    width: 45%;
+    width: 100%;
+    display: flex;
+
+    .general{
+      width: 50%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+  .description {
   }
   .dashboards {
-    width: 45%;
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
   }
+
 }
