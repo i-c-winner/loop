@@ -26,11 +26,11 @@ function Header() {
         <ButtonGroup
           variant="contained"
           className={styles.menuGroup}>
-          <Button onClick={handleClick}>
+          <Button onClick={()=>redirect('/sections')}>
             Home
           </Button>
-          <Button onClick={()=>redirect('/sections')}>
-            Sections
+          <Button onClick={()=>redirect('/dashboards')}>
+            Dashboards
           </Button>
         </ButtonGroup>
             <Box>
