@@ -62,7 +62,7 @@ export default function List_1 () {
 
         {/* Слева */}
         <TimelineItem >
-          <TimelineOppositeContent color="textSecondary">
+          <TimelineOppositeContent color="text.primary">
             01.03.2025
           </TimelineOppositeContent>
           <TimelineSeparator>
