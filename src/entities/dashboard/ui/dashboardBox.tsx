@@ -1,3 +1,4 @@
+'use client'
 import {Box, Typography} from "@mui/material";
 import {Dashboard} from "@/entities/dashboard/ui/dashboard";
 import {option, options} from "@/shared/assets/data/pipeData";
@@ -30,7 +31,8 @@ function createMarqueeTitle(text: string) {
 }
 
 function DashboardBox(props: {
-  options: EChartsOption
+  options: EChartsOption,
+  actions?: (value: number, list: string)=>void
 }) {
   return (
     <Box className={styles.dashboardBox}>
@@ -50,7 +52,7 @@ function DashboardBox(props: {
             sx={{
             }}
             className={styles.dashboards}>
-            <Bar options={props.options}/>
+            <Bar options={props.options} actions={props.actions}/>
           </Box>
         </Box>
 

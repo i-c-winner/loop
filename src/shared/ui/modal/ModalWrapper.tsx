@@ -1,20 +1,28 @@
 'use client'
 import {Modal, Box} from "@mui/material";
-import React, {useRef} from "react";
+import React, {useRef, useContext} from "react";
+import {MyContext} from "@/app/providers/MyContext";
+
 
 function ModalWrapper() {
+  const context = useContext(MyContext);
+  const {contextChildren, isOpen} = context.modal as {
+    contextChildren: React.ReactElement, isOpen: boolean
+  };
+  const {closeModal} = context;
 
-  const [child, setChild] = React.useState<React.ReactElement>(<p></p>);
-  const [modalOpen, setModalOpen] = React.useState(true);
-
+  function handleClose() {
+    closeModal()
+  }
   return <Modal
-      open={modalOpen}
+      open={isOpen}
       onClose={(event, reason) => {
         if (reason === 'escapeKeyDown') {
-         setModalOpen(false)
+         handleClose()
         }
+
       }}
-    >{child}</Modal>
+    >{contextChildren}</Modal>
 }
 
 export {ModalWrapper};
