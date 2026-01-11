@@ -1,5 +1,5 @@
 import {Box, Typography} from "@mui/material";
-import {Dashboard} from "@/entities/dashboard/dashboard";
+import {Dashboard} from "@/entities/dashboard/ui/dashboard";
 import {option, options} from "@/shared/assets/data/pipeData";
 import {ECharts, EChartsOption} from "echarts";
 import styles from './dashboard.module.scss'

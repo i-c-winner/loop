@@ -1,6 +1,6 @@
 import {ThemeRegistry} from "@/app/theme/ThemeRegistry";
 import {Header} from "@/entities/header/ui/Header";
-import {Footer} from "@/entities/footer/footer";
+import {Footer} from "@/entities/footer/ui/footer";
 
 export default function RootLayout({
                                      children,
