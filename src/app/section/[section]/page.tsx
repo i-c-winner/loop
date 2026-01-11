@@ -74,13 +74,13 @@ export default function List_1 () {
 
         {/* Справа */}
         <TimelineItem >
-          <TimelineOppositeContent color="primary.main">
+          <TimelineOppositeContent color="text.primary">
             15.03.2025
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
           </TimelineSeparator>
-          <TimelineContent color='primary.main'>Версия 4</TimelineContent>
+          <TimelineContent color='text.primary'>Версия 4</TimelineContent>
         </TimelineItem>
       </Timeline>
     </Box>

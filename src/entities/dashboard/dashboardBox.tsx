@@ -3,7 +3,8 @@ import {Dashboard} from "@/entities/dashboard/dashboard";
 import {option, options} from "@/shared/assets/data/pipeData";
 import {ECharts, EChartsOption} from "echarts";
 import styles from './dashboard.module.scss'
-import {Bar} from "@/widgets/chatPost/dashboards/Bar";
+import {Bar} from "@/widgets/charts/Bar";
+
 
 function createMarqueeTitle(text: string) {
   return {
@@ -28,7 +29,9 @@ function createMarqueeTitle(text: string) {
   };
 }
 
-function DashboardBox() {
+function DashboardBox(props: {
+  options: EChartsOption
+}) {
   return (
     <Box className={styles.dashboardBox}>
         <Box className={styles.mainDashboard}
@@ -47,7 +50,7 @@ function DashboardBox() {
             sx={{
             }}
             className={styles.dashboards}>
-            <Bar />
+            <Bar options={props.options}/>
           </Box>
         </Box>
 

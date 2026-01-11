@@ -6,7 +6,6 @@ const config_theme = {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: 'text.primary'
         },
       }
     }
