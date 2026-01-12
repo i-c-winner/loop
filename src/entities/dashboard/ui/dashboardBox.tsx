@@ -4,7 +4,7 @@ import {Dashboard} from "@/entities/dashboard/ui/dashboard";
 import {option, options} from "@/shared/assets/data/pipeData";
 import {ECharts, EChartsOption} from "echarts";
 import styles from './dashboard.module.scss'
-import {Bar} from "@/widgets/charts/Bar";
+import {Bar} from "@/widgets/charts/ui/Bar";
 
 
 function createMarqueeTitle(text: string) {
@@ -32,7 +32,7 @@ function createMarqueeTitle(text: string) {
 
 function DashboardBox(props: {
   options: EChartsOption,
-  actions?: (value: number, list: string)=>void
+  actions?: (value?: number, list?: string)=>void
 }) {
   return (
     <Box className={styles.dashboardBox}>
