@@ -32,7 +32,7 @@ function createMarqueeTitle(text: string) {
 
 function DashboardBox(props: {
   options: EChartsOption,
-  actions?: (value?: number, list?: string)=>void
+  actions?: (value: number, list: string)=>void
 }) {
   return (
     <Box className={styles.dashboardBox}>

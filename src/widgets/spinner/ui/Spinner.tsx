@@ -4,9 +4,10 @@ import Box from '@mui/material/Box';
 import NumberSpinner from './NumberSpinner';
 import {Dispatch, SetStateAction, useRef} from "react";
 
-function Spinner(props: { defaultValue: number, setValue: Dispatch<SetStateAction<number>>}) {
-  function setChange(value: number | null) {
+function Spinner(props: { defaultValue: number, setValue: Dispatch<SetStateAction<number>>|null}) {
+  function setChange(value: number|null ) {
     if (value === null) return
+    if (props.setValue === null) return
     props.setValue(value)
   }
 

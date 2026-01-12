@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 export default function RootLayout({
                                      children,
                                    }: Readonly<{
-  children: React.ReactElement;
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -20,7 +20,6 @@ export default function RootLayout({
             <ModalWrapper />
             {children}
           </Box>
-
         </MyContextProvider>
         <Footer/>
     </ThemeRegistry>
