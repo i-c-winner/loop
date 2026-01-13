@@ -15,21 +15,27 @@ function Chat() {
   return (
     <Box
       sx={{
+        width: '500px',
+        margin: '0 auto',
         padding: 1,
+        height: 'calc(100vh - 300px)',
+        overflowY: 'auto',
+        texAlign: 'center',
       }}
 
     >
 
       <Box
-        className={styles.chat}
-        sx={{backgroundColor: 'background.paper'}}
+        sx={{
+          overflowY: 'auto',
+          backgroundColor: 'background.paper'}}
       >
 
         <Box className={styles.box}
         >
           <Typography   color='secondary'
           className={styles.title}
-          >Общий чат</Typography>
+          >Чат по разделу</Typography>
           <ChatPost myPost={true} name='Ivanov' text="message from Ivanov"/>
           <ChatPost name='Petrov' text="message from Petrov"/>
           <ChatPost name='Sidorov' text="message from Sidorov"/>
@@ -50,11 +56,8 @@ function Chat() {
           <ChatPost name='Sidorov' text="message from Sidorov"/>
           <ChatPost name='Sidorov' text="message from Sidorov"/>
         </Box>
-
-        <ChatInput onSendMessage={handleSendMessage} />
-
       </Box>
-
+      <ChatInput onSendMessage={handleSendMessage} />
     </Box>
   )
 }

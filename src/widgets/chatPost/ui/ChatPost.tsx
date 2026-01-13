@@ -20,7 +20,7 @@ export default function ChatPost(props: {
       <Box
         className={`${styles.text} ${props.myPost? styles.myPost: ''}`}
         sx={{
-          backgroundColor: props.myPost?'primary.main':'background.default',
+          backgroundColor: props.myPost?'#d0dedf':'background.default',
           color: props.myPost? 'text.secondary':'text.primary',
         }}
     >{props.text}

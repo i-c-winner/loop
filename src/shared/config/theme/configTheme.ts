@@ -12,7 +12,7 @@ const config_theme = {
   },
     palette: {
       primary: {
-        main: '#f4f7f8',
+        main: '#0b0bef',
       },
       secondary: {
         main: '#242428'
