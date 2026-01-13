@@ -26,16 +26,15 @@ function Header() {
         <ButtonGroup
           variant="contained"
           className={styles.menuGroup}>
-          <Button onClick={()=>redirect('/sections')}>
+          <Button onClick={()=>redirect('/')}>
             Home
           </Button>
-          <Button onClick={()=>redirect('/dashboards')}>
-            Dashboards
+          <Button onClick={()=>redirect('/project')}>
+            Project
           </Button>
         </ButtonGroup>
             <Box>
         <Typography variant={'h4'} color={'text.primary'}>
-          Строительство производственного здания по адресу: ул.Ленина 15А
         </Typography>
         <Typography variant={"body1"} color={'text.primary'}>
           Статистика по разделу АР

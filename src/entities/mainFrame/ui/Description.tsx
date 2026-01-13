@@ -10,6 +10,8 @@ function Description() {
       flexGrow: 1,
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      overflowY: 'auto'
     }}
   >
 

@@ -41,7 +41,7 @@ const options = {
   },
   xAxis: {
     type: 'value',
-    max: 100
+    max: 100,
   },
   yAxis: {
     type: 'category',
@@ -69,13 +69,19 @@ const options = {
       {
         name: 'Выполенно',
         type: 'bar',
+        barWidth: 20,
         stack: 'total',
         label: {
           show: true,
           position: 'inside',
+          color: '#000',
+          fontSize: 20,
           formatter: '{c}%'
         },
-        data: data.map(d => d[0])
+        data: data.map(d => d[0]),
+        itemStyle: {
+          color: '#ea2828'
+        }
       },
       {
         name: 'Осталось',
@@ -83,10 +89,15 @@ const options = {
         stack: 'total',
         label: {
           show: true,
+          color: '#fff',
+          fontSize: 20,
           position: 'inside',
           formatter: '{c}%'
         },
-        data: data.map(d => d[1])
+        data: data.map(d => d[1]),
+        itemStyle: {
+          color: '#160dc0'
+        }
       }
     ];
   })()

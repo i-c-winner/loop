@@ -1,9 +1,9 @@
-import {redirect} from "next/navigation";
+import {Typography} from "@mui/material";
 
 function Home() {
-  redirect('/sections')
   return (
     <div>
+      <Typography variant={'h2'}>MAIN PAGE</Typography>
     </div>
   );
 }

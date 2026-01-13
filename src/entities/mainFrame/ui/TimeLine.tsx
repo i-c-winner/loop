@@ -1,10 +1,3 @@
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,10 +7,9 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import {OpenInNew, Download} from "@mui/icons-material";
+import {useBadge} from "@mui/base";
 import styles from  './mainFrame.module.scss'
-
-const leftColor='red'
-const rightColor='green'
+import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
 
 function TimeLine() {
   return (
@@ -37,86 +29,7 @@ function TimeLine() {
         padding: 1,
         paddingTop: 0,
       }}>
-        <Timeline
-          position="right"
-          sx={{
-            padding: 1,
-            margin: 0,
-            height: '100%',
-            backgroundColor: 'background.paper',
-            '& .MuiTimelineItem-root': {
-              boxSizing: 'border-box',
-              padding: '8px 8px 8px 0px',
-            },
-            '& .MuiTimelineItem-root:before': {
-              display: 'none', // убираем служебную колонку MUI
-            },
-          }}
-        >
-          <Typography color={'secondary'} className={styles.title}>Обмен файлами</Typography>
-          <Box className={styles.legend}>
-            <Typography color={leftColor}>Переденно от ГИП</Typography>
-            <Typography color='text.primary' >/</Typography>
-            <Typography color={rightColor}>Передано от исполнителя</Typography>
-          </Box>
-          <TimelineItem position="left">
-            <TimelineOppositeContent color="textSecondary">
-              10.01.2025
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent color={leftColor}>Техническое задание. Версия 1</TimelineContent>
-          </TimelineItem>
-
-          {/* Справа */}
-          <TimelineItem position="right">
-            <TimelineOppositeContent color="textSecondary">
-              01.02.2025
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent color={rightColor}>Лист 1, 2, 5-11 переданы на согласование</TimelineContent>
-          </TimelineItem>
-
-          {/* Слева */}
-          <TimelineItem position="left">
-            <TimelineOppositeContent color="textSecondary">
-              01.03.2025
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent color={leftColor}>Техническое задание. Версия 2</TimelineContent>
-          </TimelineItem>
-
-          {/* Справа */}
-          <TimelineItem position="left">
-            <TimelineOppositeContent color="textSecondary">
-              15.03.2025
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-            </TimelineSeparator>
-            <TimelineContent color={leftColor}>Техническое задание. Версия 3</TimelineContent>
-          </TimelineItem>
-
-        </Timeline>
       </Box>
-
-      <Box
-        className={styles.box}
-        sx={{
-        height: '50%',
-        overflowY: 'auto',
-        borderRadius: '4px',
-        padding: 1,
-        paddingBottom: 0
-      }}>
         <TableContainer sx={{
           height: '100%',
           backgroundColor: 'background.paper',
@@ -132,7 +45,8 @@ function TimeLine() {
               <TableRow>
                 <TableCell>Дата</TableCell>
                 <TableCell>Наименование</TableCell>
-                <TableCell>Открыть</TableCell>
+                <TableCell>Автор</TableCell>
+                <TableCell>Получатель</TableCell>
                 <TableCell>Скачать</TableCell>
               </TableRow>
             </TableHead>
@@ -140,9 +54,8 @@ function TimeLine() {
               <TableRow>
                 <TableCell>03.02.25</TableCell>
                 <TableCell>Техническое задание</TableCell>
-                <TableCell>
-                  <OpenInNew />
-                </TableCell>
+                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
+                <TableCell><UserBadge name={'Petrov'}/></TableCell>
                 <TableCell>
                   <Download />
                 </TableCell>
@@ -150,9 +63,8 @@ function TimeLine() {
               <TableRow>
                 <TableCell>15.03.25</TableCell>
                 <TableCell>Лист 1, 2, 5-11</TableCell>
-                <TableCell>
-                  <OpenInNew />
-                </TableCell>
+                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
+                <TableCell><UserBadge name={'Petrov'}/></TableCell>
                 <TableCell>
                   <Download />
                 </TableCell>
@@ -160,9 +72,8 @@ function TimeLine() {
               <TableRow>
                 <TableCell>20.03.25</TableCell>
                 <TableCell>Пояснительная записка</TableCell>
-                <TableCell>
-                  <OpenInNew />
-                </TableCell>
+                <TableCell><UserBadge name={'Petrov'}/></TableCell>
+                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
                 <TableCell>
                   <Download />
                 </TableCell>
@@ -170,7 +81,6 @@ function TimeLine() {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
     </Box>
   );
 }
