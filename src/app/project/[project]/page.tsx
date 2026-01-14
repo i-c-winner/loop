@@ -47,6 +47,11 @@ export default function BasicTabs() {
   const [popoverIsOpen, setPopoverOpen] = React.useState<boolean>(false);
   const [value, setValue] = React.useState<number>(0);
 
+  function updateProgressToggled(value: number) {
+    console.log(value)
+    setPopoverOpen(true)
+  }
+
   return (
     <Box sx={{
       padding: '128px 64px',
@@ -67,7 +72,12 @@ export default function BasicTabs() {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <DashboardBox options={lists as EChartsOption} />
+          <Typography
+            sx={{
+              textAlign: 'center',
+            }}
+            variant={'body1'}>Реестр комлекта рабочих чертежей</Typography>
+          <DashboardBox isOpen={popoverIsOpen} actions={updateProgressToggled} options={lists as EChartsOption} />
           <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
