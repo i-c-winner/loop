@@ -9,27 +9,56 @@ import {EChartsOption} from "echarts";
 function Home() {
   const router = useRouter()
   return (
-    <Box sx={{
-      width: '100%',
-      height: 'calc(100vh - 250px)',
-      padding: 1,
-      overflowY: 'auto'
-    }}>
       <Box sx={{
-        backgroundColor: 'background.paper',
-        height: '100%',
+        padding: '128px 64px',
         width: '100%',
         textAlign: 'center',
-      }}>
-        <Box>
+        display: 'flex',
+        gap: '64px',
+        flexDirection: 'column',
+        }}>
+        <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '0 0 5px',
+          padding: 2,
+          justifyContent: 'space-between',
+          alignItems: 'start',
+        }}
+        >
           <Typography
             variant="h5"
-
             sx={{
-              paddingTop: 2,
+              width: '100%',
+              textAlign: 'start',
             }}
-          >Строительство производственного здания по адресу: ул.Ленина 15А</Typography>
-          <Typography variant={'h5'}>Прогресс по разделам</Typography>
+          >Строительство производственного здания по адресу:</Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              textAlign: 'start',
+              width: '100%',
+            }}
+          >ул.Ленина 15А</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'start',
+              width: '100%',
+            }}
+          >
+            <Typography
+            sx={{
+              flexBasis: '25%'
+            }}
+            >Главный инженер</Typography>
+            <Typography>Команда проекта</Typography>
+          </Box>
+        </Box>
+          <Typography sx={ {
+          }} variant={'h5'}>Прогресс по разделам</Typography>
+
           <DashboardBox actions={(_, list)=>{
             router.push(`/project/${list}`)
             console.log(list)
@@ -55,11 +84,7 @@ function Home() {
               ))}
             </List>
           </Box>
-        </Box>
-
-
       </Box>
-    </Box>
   );
 }
 

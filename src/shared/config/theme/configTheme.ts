@@ -3,6 +3,14 @@ const config_theme = {
     fontFamily: ['gg sans', 'Roboto'].join(',')
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#fff',
+          borderRadius: 10,
+        },
+      }
+    },
     MuiTypography: {
       styleOverrides: {
         root: {
@@ -13,6 +21,7 @@ const config_theme = {
     palette: {
       primary: {
         main: '#0b0bef',
+        contrastText: 'black'
       },
       secondary: {
         main: '#242428'
@@ -23,7 +32,8 @@ const config_theme = {
       },
       background: {
         paper: '#ffffff',
-        default: '#eaf3ff'
+        default: '#f9fbfc',
+        shadow: 'red'
       }
     }
 }

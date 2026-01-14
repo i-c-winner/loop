@@ -21,7 +21,7 @@ function Page() {
     setValue(value)
   }
 
-  return <Box className={styles.dashboards}>
+    return <Box>
     <DashboardBox options={myOptions} actions={(value: number, list: string) => updateValue(value, list)}/>
     <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)}
     />

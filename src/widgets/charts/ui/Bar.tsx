@@ -4,7 +4,6 @@ import {useEffect, useRef} from "react";
 import * as echarts from 'echarts';
 import { useRouter } from 'next/navigation';
 import {EChartsOption} from "echarts"; // 👈 useRouter вместо redirect
-
 function Bar(props: {
   options: EChartsOption,
   actions?: (value: number, list: string)=>void
@@ -33,5 +32,6 @@ function Bar(props: {
     }} ref={refBar}></Box>
   );
 }
+
 
 export { Bar };

@@ -12,20 +12,19 @@ function Header() {
   function handleClick() {
     redirect('/')
   }
-  return <Box
-    sx={{
-      padding: 1,
-    }}>
-    <Box
+  return    <Box
       sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
         color: 'text.primary',
         backgroundColor: 'background.paper',
+        boxShadow: '0 0 10px',
+        padding: '16px',
       }}
-      className={styles.header}
     >
         <ButtonGroup
           variant="contained"
-          className={styles.menuGroup}>
+          >
           <Button onClick={()=>redirect('/')}>
             Home
           </Button>
@@ -33,23 +32,16 @@ function Header() {
             Project
           </Button>
         </ButtonGroup>
-            <Box>
-        <Typography variant={'h4'} color={'text.primary'}>
-        </Typography>
         <Typography variant={"body1"} color={'text.primary'}>
           Статистика по разделу АР
         </Typography>
-      </Box>
-      <Box className={styles.userGroup}>
         <ButtonGroup variant='contained' >
           <Button>Login</Button>
           <Button>Logout</Button>
+          <Avatar className={styles.avatar}></Avatar>
         </ButtonGroup>
-        <Avatar className={styles.avatar}></Avatar>
-      </Box>
 
     </Box>
-  </Box>;
   }
 
 export {Header}

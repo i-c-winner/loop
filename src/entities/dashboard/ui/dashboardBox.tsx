@@ -11,11 +11,10 @@ function DashboardBox(props: {
   const length=props.options.yAxis?.data.length;
   return (
     <Box sx={{
-      height: `calc(100vh - 300px)`,
+      height: `100%`,
       overflowY: 'auto',
       textAlign: 'center',
     }}>
-      <Typography variant={'h5'}>Выполнение по разделу Архитектурные решения</Typography>
       <Bar options={props.options} actions={props.actions}/>
     </Box>
   );
