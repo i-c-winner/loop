@@ -2,9 +2,10 @@
 import {DashboardBox} from "@/entities/dashboard/ui/dashboardBox";
 import {options} from "@/shared/assets/data/pipeData";
 import {useRouter} from "next/navigation";
-import {Box, Typography,List, ListItem, ListItemText, IconButton} from "@mui/material";
+import {Box, Typography,List, ListItem, ListItemText, IconButton, Card} from "@mui/material";
 import CommentIcon from '@mui/icons-material/Comment';
-import {EChartsOption} from "echarts";
+import {EChartsOption} from "echarts";;
+import {InfoCard} from "@/widgets/infocard/ui/InfoCard";
 
 function Home() {
   const router = useRouter()
@@ -17,12 +18,11 @@ function Home() {
         gap: '64px',
         flexDirection: 'column',
         }}>
-        <Box
+        <Card
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: '0 0 5px',
-          padding: 2,
+          padding: '16px',
           justifyContent: 'space-between',
           alignItems: 'start',
         }}
@@ -55,20 +55,56 @@ function Home() {
             >Главный инженер</Typography>
             <Typography>Команда проекта</Typography>
           </Box>
+        </Card>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'start',
+          gap: '24px',
+          // backgroundColor: 'background.paper',
+          width: '100%',
+        }}>
+          <InfoCard parms={{
+            title: 'Общий прогесс:',
+            value: '70%',
+            subtitle: 'По графику'
+          }}></InfoCard>
+          <InfoCard parms={{
+            title: 'Соблдюдение сроков:',
+            value: '83%',
+            subtitle: 'По графику'
+          }}></InfoCard>
+          <InfoCard parms={{
+            title: 'Наличие проблем:',
+            value: '3',
+            subtitle: 'Имеются'
+          }}></InfoCard>
+          <InfoCard parms={{
+            title: 'Бюджет:',
+            value: '$150 000',
+            subtitle: 'Согласно бюджету'
+          }}></InfoCard>
         </Box>
-          <Typography sx={ {
-          }} variant={'h5'}>Прогресс по разделам</Typography>
-
+        <Card
+        sx={{
+          padding: '16px',
+          width: '100%',
+        }}
+        >
+          <Typography variant={'h4'}>
+            Прогресс разделов рабочей документации
+          </Typography>
           <DashboardBox actions={(_, list)=>{
             router.push(`/project/${list}`)
             console.log(list)
           }} options={options as EChartsOption}/>
-          <Box sx={{
-          }}>
+        </Card>
+
+
+          <Card>
             <Typography variant={'h5'}>Последние события</Typography>
             <List sx={{
               margin: "0 auto",
-              width: '100%', maxWidth: 360, bgcolor: 'background.default', padding: 5,}}>
+              width: '100%', maxWidth: 360, padding: 5,}}>
               {[1, 2, 3].map((value) => (
                 <ListItem
                   key={value}
@@ -83,7 +119,7 @@ function Home() {
                 </ListItem>
               ))}
             </List>
-          </Box>
+          </Card>
       </Box>
   );
 }
