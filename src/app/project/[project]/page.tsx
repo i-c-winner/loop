@@ -6,8 +6,8 @@ import {lists} from "@/shared/assets/data/pipeData";
 import {Description} from "@/entities/mainFrame/ui/Description";
 import {Chat} from "@/entities/chat/ui/Chat";
 import {EChartsOption} from "echarts";
-import {TimeLine} from "@/entities/mainFrame/ui/TimeLine";
 import {UpdateProgres} from "@/features/updateValue/ui/UpdateProgres";
+import {TimeLine} from "@/entities/mainFrame/ui/TimeLine";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -68,7 +68,6 @@ export default function BasicTabs() {
             <Tab label="Обзор" {...a11yProps(0)} />
             <Tab label="Реестр" {...a11yProps(1)} />
             <Tab label="Документы" {...a11yProps(2)} />
-            <Tab label="Обсуждения" {...a11yProps(3)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
@@ -85,9 +84,6 @@ export default function BasicTabs() {
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
          <TimeLine/>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
-          <Chat />
         </CustomTabPanel>
       </Card>
     </Box>

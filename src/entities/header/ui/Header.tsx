@@ -2,7 +2,6 @@
 /**
  * TODO сделать компонент серверным (handleclick)
  */
-import styles from './header.module.scss'
 import {Box, Card} from '@mui/material';
 import {ButtonGroup, Avatar, Button} from "@mui/material";
 import {redirect} from "next/navigation";
@@ -29,7 +28,10 @@ function Header() {
         Home
       </Button>
       <Button onClick={() => redirect('/project')}>
-        Project
+        Проект
+      </Button>
+      <Button onClick={() => redirect('/chat')}>
+        Чат
       </Button>
     </ButtonGroup>
     <Box sx={{display: 'flex', justifyContent: 'flex-start', gap: '16px'}}>
@@ -37,7 +39,7 @@ function Header() {
         <Button>Login</Button>
         <Button>Logout</Button>
       </ButtonGroup>
-      <Avatar className={styles.avatar}></Avatar>
+      <Avatar ></Avatar>
     </Box>
 
   </Card>

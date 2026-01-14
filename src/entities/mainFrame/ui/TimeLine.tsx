@@ -6,9 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import {OpenInNew, Download} from "@mui/icons-material";
-import {useBadge} from "@mui/base";
-import styles from  './mainFrame.module.scss'
+import {Download} from "@mui/icons-material";
 import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
 
 function TimeLine() {
@@ -22,7 +20,6 @@ function TimeLine() {
       flexDirection: 'column',
     }}>
       <Box
-        className={styles.box}
         sx={{
         flex: 1,
         overflowY: 'auto',
@@ -38,7 +35,7 @@ function TimeLine() {
           color: 'text.primary',
           boxSizing: 'border-box',
         }}>
-          <Typography className={styles.title}
+          <Typography
             color={'secondary'}>Реестр переданых файлов</Typography>
           <Table>
             <TableHead>

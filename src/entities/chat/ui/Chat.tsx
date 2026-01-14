@@ -32,8 +32,6 @@ function Chat() {
       >
         <Box
         >
-          <Typography   color='secondary'
-          >Чат по разделу</Typography>
           <ChatPost myPost={true} name='Ivanov' text="message from Ivanov"/>
           <ChatPost name='Petrov' text="message from Petrov"/>
           <ChatPost name='Sidorov' text="message from Sidorov"/>
