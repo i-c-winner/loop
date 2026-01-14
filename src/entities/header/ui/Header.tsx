@@ -33,6 +33,9 @@ function Header() {
       <Button onClick={() => redirect('/chat')}>
         Чат
       </Button>
+      <Button onClick={() => {}}>
+        О проекте
+      </Button>
     </ButtonGroup>
     <Box sx={{display: 'flex', justifyContent: 'flex-start', gap: '16px'}}>
       <ButtonGroup variant='contained'>
