@@ -1,8 +1,6 @@
 'use client'
 import React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import {Card, Tabs, Tab, Box, Typography} from "@mui/material";
 import {DashboardBox} from "@/entities/dashboard/ui/dashboardBox";
 import {lists} from "@/shared/assets/data/pipeData";
 import {Description} from "@/entities/mainFrame/ui/Description";
@@ -51,14 +49,12 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{
-      height: 'calc(100vh - 212px)',
-      padding: 1,
-      width: '100%' }}>
-      <Box sx={{
-        height: '100%',
+      padding: '128px 64px',
+    }}>
+      <Card sx={{
         width: '100%',
-        backgroundColor: 'background.paper',
       }}>
+        <Typography variant={'body1'}></Typography>
         <Box sx={{ borderBottom: 1,
           height: '50px',
           backgroundColor: 'background.paper',
@@ -83,8 +79,7 @@ export default function BasicTabs() {
         <CustomTabPanel value={value} index={3}>
           <Chat />
         </CustomTabPanel>
-      </Box>
-
+      </Card>
     </Box>
   );
 }

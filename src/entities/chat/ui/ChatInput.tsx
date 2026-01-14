@@ -40,7 +40,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <Box className={styles.chatInputContainer}>
+    <Box
+      sx={{
+        backgroundColor: 'background.paper',
+      }}
+      className={styles.chatInputContainer}>
       <Box className={styles.inputContainer}>
         <TextField
           fullWidth

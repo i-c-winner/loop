@@ -1,6 +1,8 @@
 .chatInputContainer {
   padding: 16px;
   border-top: 1px solid #e0e0e0;
+  position: sticky;
+  bottom: 0;
 
   .inputContainer {
     display: flex;

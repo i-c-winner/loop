@@ -15,14 +15,14 @@ function Chat() {
   return (
     <Box
       sx={{
-        width: '500px',
+        width: '55%',
         margin: '0 auto',
         padding: 1,
-        height: 'calc(100vh - 300px)',
+        height: 'calc(100vh - 450px)',
         overflowY: 'auto',
         texAlign: 'center',
+        paddingBottom: 0,
       }}
-
     >
 
       <Box
@@ -30,11 +30,9 @@ function Chat() {
           overflowY: 'auto',
           backgroundColor: 'background.paper'}}
       >
-
-        <Box className={styles.box}
+        <Box
         >
           <Typography   color='secondary'
-          className={styles.title}
           >Чат по разделу</Typography>
           <ChatPost myPost={true} name='Ivanov' text="message from Ivanov"/>
           <ChatPost name='Petrov' text="message from Petrov"/>

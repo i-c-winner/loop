@@ -6,9 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import {UserBadge} from "@/widgets/userBadge/ui/UserBadge"
 import {OpenInNew, Download} from "@mui/icons-material";
-import styles from './table.module.scss'
 import Typography from "@mui/material/Typography";
 import CheckIcon from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
@@ -20,7 +18,7 @@ function ProjectInfo(props: {
   const id = useId()
   const keys = Object.keys(props.data[0]) || []
   return (
-    <TableContainer className={styles.table}
+    <TableContainer
                     sx={{
                       color: 'text.primary',
                       backgroundColor: 'background.paper',
@@ -29,7 +27,7 @@ function ProjectInfo(props: {
       <Typography sx={{
         margin: "16px auto",
         backgroundColor: 'background.paper',
-      }} className={styles.title} color='secondary'>{props.title}</Typography>
+      }} color='secondary'>{props.title}</Typography>
       <Table>
         <TableHead>
           <TableRow>

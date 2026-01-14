@@ -74,13 +74,13 @@ const options = {
         label: {
           show: true,
           position: 'inside',
-          color: '#000',
+          color: '#f4f6fa',
           fontSize: 20,
           formatter: '{c}%'
         },
         data: data.map(d => d[0]),
         itemStyle: {
-          color: '#ea2828'
+          color: '#3a3f4b'
         }
       },
       {
@@ -89,14 +89,14 @@ const options = {
         stack: 'total',
         label: {
           show: true,
-          color: '#fff',
+          color: '#3a3f4b',
           fontSize: 20,
           position: 'inside',
           formatter: '{c}%'
         },
         data: data.map(d => d[1]),
         itemStyle: {
-          color: '#160dc0'
+          color: '#f4f6fa'
         }
       }
     ];
@@ -156,7 +156,11 @@ const lists = {
         label: {
           show: true,
           position: 'inside',
+          color: '#f4f6fa',
           formatter: '{c}%'
+        },
+        itemStyle: {
+          color: '#3a3f4b'
         },
         data: data.map(d => d[0])
       },
@@ -165,9 +169,13 @@ const lists = {
         type: 'bar',
         stack: 'total',
         label: {
+          color: '#3a3f4b',
           show: true,
           position: 'inside',
           formatter: '{c}%'
+        },
+        itemStyle: {
+          color: '#f4f6fa'
         },
         data: data.map(d => d[1])
       }

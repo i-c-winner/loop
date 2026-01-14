@@ -16,7 +16,6 @@ function Description() {
   >
 
     <ProjectInfo data={data} title={'Реестр страниц раздела АР'}></ProjectInfo>
-    <ProjectInfo data={technicalTasks} title={'Версии технических заданий'}></ProjectInfo>
   </Box>
 }
 

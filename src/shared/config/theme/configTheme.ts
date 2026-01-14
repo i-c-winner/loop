@@ -20,7 +20,7 @@ const config_theme = {
   },
     palette: {
       primary: {
-        main: '#0b0bef',
+        main: '#1d4ed8',
         contrastText: 'black'
       },
       secondary: {
