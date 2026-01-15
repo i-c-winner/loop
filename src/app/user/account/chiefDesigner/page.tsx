@@ -1,7 +1,8 @@
 'use client'
-import {Box, Card, Tab, Tabs, Typography,} from "@mui/material";
+import {Box, Card, Tab, Tabs, Typography, IconButton} from "@mui/material";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import React from "react";
+import {sections} from "@/shared/assets/data/pipeData";
 
 interface ITabPanelProps {
   children?: React.ReactNode;
@@ -77,11 +78,23 @@ function Page() {
           sx={{
             flexBasis: '30%',
             padding: '16px',
+            gap: '16px',
           }}
         >
-          <Typography variant={'body1'}>Комплект рабочей документации</Typography>
+          <Typography variant={'h4'}>Комплект рабочей документации</Typography>
+          <Box
+          sx={{
+            padding: '16px',
+          }}
+          >
+            {sections.map((value) => {
+              return <Typography key={value} variant={'body2'}>{value}</Typography>
+            })}
+          </Box>
+          <IconButton aria-label="delete">
           <DataSaverOnIcon
           />
+          </IconButton>
         </Card>
         <Card
           sx={{
@@ -89,9 +102,20 @@ function Page() {
             padding: '16px',
           }}
         >
-          <Typography variant={'body1'}>Список разработчиков</Typography>
-          <DataSaverOnIcon
-          />
+          <Typography variant={'h4'}>Список разработчиков</Typography>
+          <Box
+          sx={{
+            padding: '16px',
+          }}
+          >
+            {['Ivanov', 'Petrov', 'Sidorov'].map((value) => {
+              return <Typography key={value} variant={'body2'}>{value}</Typography>
+            })}
+          </Box>
+          <IconButton aria-label="delete">
+            <DataSaverOnIcon
+            />
+          </IconButton>
         </Card>
         <Card
           sx={{
@@ -99,9 +123,15 @@ function Page() {
             padding: '16px',
           }}
         >
-          <Typography variant={'body1'}>Список других лиц</Typography>
-          <DataSaverOnIcon
-          />
+          <Typography variant={'h4'}>Список других лиц</Typography>
+          <Box sx={{
+            padding: '16px',
+          }}>
+          </Box>
+          <IconButton aria-label="delete">
+            <DataSaverOnIcon
+            />
+          </IconButton>
         </Card>
       </Box>
     </CustomTabPanel>

@@ -78,6 +78,14 @@ const options = {
           fontSize: 20,
           formatter: '{c}%'
         },
+        emphasis: {
+          label: {
+          color: '#ffd400'
+          },
+          itemStyle: {
+            color: '#1f2a44'
+          }
+        },
         data: data.map(d => d[0]),
         itemStyle: {
           color: '#3a3f4b'
@@ -162,6 +170,14 @@ const lists = {
         itemStyle: {
           color: '#3a3f4b'
         },
+        emphasis: {
+          label: {
+            color: '#ffd400'
+          },
+          itemStyle: {
+            color: '#1f2a44'
+          }
+        },
         data: data.map(d => d[0])
       },
       {
@@ -182,4 +198,18 @@ const lists = {
     ];
   })()
 };
-export {option, options, lists}
+
+const sections=   [
+  'Общие данные',
+  'Архитектурные решения',
+  'Технологические решения',
+  'Водоснабжение и канализация',
+  'Отопление и вентиляция',
+  'Электроснабжение',
+  'Слаботочные сети',
+  'Газоснабжение',
+  'Наружные водопровод и канализация',
+  'Генплан',
+  'Противопожарные мероприятия'
+]
+export {option, options, lists, sections}
