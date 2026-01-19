@@ -5,9 +5,12 @@ interface ModalContextType {
   modal: {
     isOpen: boolean;
     contextChildren: ReactNode;
+
   };
   changeChild: (child: ReactNode) => void;
   closeModal: () => void;
+  currentProject: string;
+  changeProject: (project: string)=>void;
 }
 
 const initialContext: ModalContextType = {
@@ -18,19 +21,18 @@ const initialContext: ModalContextType = {
   changeChild: () => {},
   closeModal: () => {
     console.log('closeModal')
-  }
+  },
+  currentProject: 'start',
+  changeProject: ()=>{}
 };
 
 const MyContext = createContext<ModalContextType>(initialContext);
-
-interface MyContextProviderProps {
-  contextChildren: ReactNode;
-}
 
 function MyContextProvider({children}:  Readonly<{
   children: React.ReactElement;
 }>) {
   const [modal, setModal] = useState(initialContext.modal);
+  const [project, setProject] = useState(initialContext.currentProject);
 
   function changeChild(child: ReactNode) {
     setModal({
@@ -44,9 +46,12 @@ function MyContextProvider({children}:  Readonly<{
       isOpen: false,
     });
   }
+  function changeProject(project: string) {
+    setProject(project)
+  }
 
   return (
-    <MyContext.Provider value={{ modal, changeChild, closeModal }}>
+    <MyContext.Provider value={{ modal, changeChild, closeModal, currentProject: project, changeProject }}>
       {children}
     </MyContext.Provider>
   );

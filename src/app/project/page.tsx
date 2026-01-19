@@ -7,9 +7,11 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import {EChartsOption} from "echarts";
 import {InfoCard} from "@/widgets/infocard/ui/InfoCard";
 import CommentIcon from '@mui/icons-material/Comment';
+import {useEffect} from "react";
 
 function Home() {
   const router = useRouter()
+  useEffect(() => {fetch('/api/currentUser').then(res=>res.json()).then(res=>console.log(res))}, [])
   return (
     <Box sx={{
       padding: '128px 64px',

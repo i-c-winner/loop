@@ -6,24 +6,20 @@ import {Box, Card, Popper, Stack} from '@mui/material';
 import {ButtonGroup, Avatar, Button, Typography, CardContent} from "@mui/material";
 import {useRef, useState} from "react";
 import PersonIcon from '@mui/icons-material/Person';
+import {useContext} from "react";
+import {MyContext} from "@/app/providers/MyContext";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import {useRouter} from "next/navigation";
 import {redirect} from "next/navigation";
 
 function Header() {
-
-  function handleClick() {
-    redirect('/')
-  }
-
   const refAvatar = useRef<HTMLDivElement | null>(null)
   const [popperIsOpen, setPopperIsOpen] = useState(false);
   const [anchor, setAnchor] = useState<HTMLDivElement | null>(null)
   const router = useRouter()
+  const context = useContext(MyContext)
+  console.log(context)
 
-  // useEffect(()=>{
-  //   setAnchor(refAvatar.current)
-  // }, [])
   return <Card
     sx={{
       display: 'flex',
@@ -50,6 +46,14 @@ function Header() {
         О проекте
       </Button>
     </ButtonGroup>
+    <Typography
+      sx={{
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        padding: '0 16px 0 16px',
+        textOverflow: 'ellipsis',
+      }}
+      variant={'h5'}>{context.currentProject}</Typography>
     <Box sx={{display: 'flex', justifyContent: 'flex-start', gap: '16px'}}>
       <ButtonGroup variant='contained'>
         <Button>Login</Button>

@@ -35,6 +35,8 @@ const option = {
   ]
 };
 
+const projects=['First Project', 'Second Project']
+
 const options = {
   legend: {
     selectedMode: true
@@ -212,4 +214,4 @@ const sections=   [
   'Генплан',
   'Противопожарные мероприятия'
 ]
-export {option, options, lists, sections}
+export {option, options, lists, sections, projects}

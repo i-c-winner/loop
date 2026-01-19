@@ -28,7 +28,7 @@ const config_theme = {
       },
       text: {
         primary: '#171616',
-        secondary: '#19191c',
+        secondary: '#848fbb',
       },
       background: {
         paper: '#ffffff',
