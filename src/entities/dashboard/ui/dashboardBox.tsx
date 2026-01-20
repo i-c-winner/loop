@@ -17,7 +17,6 @@ function DashboardBox(props: {
   const length=props.options.yAxis?.data.length;
   return (
     <Box sx={{
-      height: `100%`,
       overflowY: 'auto',
       textAlign: 'center',
     }}>

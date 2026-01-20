@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import {Download} from "@mui/icons-material";
 import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
+import {IconButton} from "@mui/material";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 function TimeLine() {
   return (
@@ -35,8 +37,6 @@ function TimeLine() {
           color: 'text.primary',
           boxSizing: 'border-box',
         }}>
-          <Typography
-            color={'secondary'}>Реестр переданых файлов</Typography>
           <Table>
             <TableHead>
               <TableRow>
@@ -44,6 +44,7 @@ function TimeLine() {
                 <TableCell>Наименование</TableCell>
                 <TableCell>Автор</TableCell>
                 <TableCell>Получатель</TableCell>
+                <TableCell>Открыть</TableCell>
                 <TableCell>Скачать</TableCell>
               </TableRow>
             </TableHead>
@@ -54,7 +55,15 @@ function TimeLine() {
                 <TableCell><UserBadge name={'Ivanov'}/></TableCell>
                 <TableCell><UserBadge name={'Petrov'}/></TableCell>
                 <TableCell>
-                  <Download />
+                  <IconButton
+                    aria-label="comment">
+                    <LaunchIcon/>
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  <IconButton>
+                    <Download />
+                  </IconButton>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -63,7 +72,15 @@ function TimeLine() {
                 <TableCell><UserBadge name={'Ivanov'}/></TableCell>
                 <TableCell><UserBadge name={'Petrov'}/></TableCell>
                 <TableCell>
-                  <Download />
+                  <IconButton
+                    aria-label="comment">
+                    <LaunchIcon/>
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  < IconButton>
+                    <Download />
+                  </IconButton>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -72,7 +89,15 @@ function TimeLine() {
                 <TableCell><UserBadge name={'Petrov'}/></TableCell>
                 <TableCell><UserBadge name={'Ivanov'}/></TableCell>
                 <TableCell>
-                  <Download />
+                  <IconButton
+                    aria-label="comment">
+                    <LaunchIcon/>
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  <IconButton>
+                    <Download />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             </TableBody>

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import {Card, Tabs, Tab, Box, Typography} from "@mui/material";
+import {Card, Tabs, Tab, Box, Typography, Stack} from "@mui/material";
 import {DashboardBox} from "@/entities/dashboard/ui/dashboardBox";
 import {lists} from "@/shared/assets/data/pipeData";
 import {Description} from "@/entities/mainFrame/ui/Description";
@@ -58,33 +58,46 @@ export default function BasicTabs() {
     }}>
       <Card sx={{
         width: '100%',
+        padding: '16px',
       }}>
-        <Typography variant={'body1'}></Typography>
         <Box sx={{ borderBottom: 1,
           height: '50px',
           backgroundColor: 'background.paper',
           borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Обзор" {...a11yProps(0)} />
-            <Tab label="Реестр" {...a11yProps(1)} />
-            <Tab label="Документы" {...a11yProps(2)} />
+            {/*<Tab label="Реестр" {...a11yProps(1)} />*/}
           </Tabs>
         </Box>
+        <Typography variant={'h4'}>Архитектурные решения</Typography>
         <CustomTabPanel value={value} index={0}>
-          <Typography
-            sx={{
-              textAlign: 'center',
-            }}
-            variant={'body1'}>Реестр комлекта рабочих чертежей</Typography>
-          <DashboardBox isOpen={popoverIsOpen} actions={updateProgressToggled} options={lists as EChartsOption} />
+            <Stack
+              spacing={2}
+              direction={'row'}
+              sx={{
+              width: '100%',
+            }}>
+              <Card sx={{
+                width: '45%',
+                padding: '16px',
+              }}>
+                <DashboardBox isOpen={popoverIsOpen} actions={updateProgressToggled} options={lists as EChartsOption} />
+              </Card>
+            <Card
+              sx={{
+                padding: '16px',
+                flexBasis: '45%',
+              }}
+            >
+            <Typography variant={'h5'}>Реестр переданных файлов</Typography>
+              <TimeLine/>
+            </Card>
+          </Stack>
           <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)} />
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          <Description/>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
-         <TimeLine/>
-        </CustomTabPanel>
+        {/*<CustomTabPanel value={value} index={1}>*/}
+        {/*  <Description/>*/}
+        {/*</CustomTabPanel>*/}
       </Card>
     </Box>
   );

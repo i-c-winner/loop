@@ -6,12 +6,14 @@ import {Box, Typography, List, ListItem, ListItemText, IconButton, Card, Stack} 
 import LaunchIcon from '@mui/icons-material/Launch';
 import {EChartsOption} from "echarts";
 import {InfoCard} from "@/widgets/infocard/ui/InfoCard";
-import CommentIcon from '@mui/icons-material/Comment';
 import {useEffect} from "react";
+import {TimeLine} from "@/entities/mainFrame/ui/TimeLine";
 
 function Home() {
   const router = useRouter()
-  useEffect(() => {fetch('/api/currentUser').then(res=>res.json()).then(res=>console.log(res))}, [])
+  useEffect(() => {
+    fetch('/api/currentUser').then(res => res.json()).then(res => console.log(res))
+  }, [])
   return (
     <Box sx={{
       padding: '128px 64px',
@@ -122,38 +124,13 @@ function Home() {
                 disableGutters
                 secondaryAction={
                   <IconButton
-                    onClick={(ev)=>router.push(`project/${value}`)}
+                    onClick={(ev) => router.push(`project/${value}`)}
                     aria-label="comment">
                     <LaunchIcon/>
                   </IconButton>
                 }
               >
                 <ListItemText primary={value}/>
-              </ListItem>
-            ))}
-          </List>
-        </Card>
-        <Card
-        sx={{
-          flexBasis: '45%'
-        }}
-        >
-          <Typography variant={'h5'}>Последние события</Typography>
-          <List sx={{
-            margin: "0 auto",
-            width: '100%', maxWidth: 360, padding: 5,
-          }}>
-            {[1, 17, 25].map((value) => (
-              <ListItem
-                key={value}
-                disableGutters
-                secondaryAction={
-                  <IconButton aria-label="comment">
-                    <CommentIcon/>
-                  </IconButton>
-                }
-              >
-                <ListItemText primary={`Last action _ ${value}/03/25`}/>
               </ListItem>
             ))}
           </List>
