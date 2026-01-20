@@ -67,6 +67,7 @@ function Page() {
               >
                 <Button variant={'text'}
                   onClick={(event)=>{
+                    localStorage.setItem('currentProject', event.currentTarget.textContent as string)
                     changeProject(event.currentTarget.textContent as string)}}
                   sx={{
                     color: value===currentProject? 'text.primary':'text.secondary',
@@ -79,9 +80,11 @@ function Page() {
             </ListItem>
           })}
         </List>
-
+        <IconButton aria-label="delete">
+          <DataSaverOnIcon
+          />
+        </IconButton>
       </Card>
-
   <Card sx={{
     width: '100%',
     padding: '16px',

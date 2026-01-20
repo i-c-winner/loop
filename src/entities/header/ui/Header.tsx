@@ -18,7 +18,6 @@ function Header() {
   const [anchor, setAnchor] = useState<HTMLDivElement | null>(null)
   const router = useRouter()
   const context = useContext(MyContext)
-  console.log(context)
 
   return <Card
     sx={{

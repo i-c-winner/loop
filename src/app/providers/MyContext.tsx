@@ -1,18 +1,15 @@
 'use client';
-import {createContext, useState, ReactNode, ReactElement} from 'react';
-
+import {createContext, useState, ReactNode, ReactElement, useEffect} from 'react';
 interface ModalContextType {
   modal: {
     isOpen: boolean;
     contextChildren: ReactNode;
-
   };
   changeChild: (child: ReactNode) => void;
   closeModal: () => void;
   currentProject: string;
   changeProject: (project: string)=>void;
 }
-
 const initialContext: ModalContextType = {
   modal: {
     isOpen: false,
@@ -22,18 +19,15 @@ const initialContext: ModalContextType = {
   closeModal: () => {
     console.log('closeModal')
   },
-  currentProject: 'start',
+  currentProject: '',
   changeProject: ()=>{}
 };
-
 const MyContext = createContext<ModalContextType>(initialContext);
-
 function MyContextProvider({children}:  Readonly<{
   children: React.ReactElement;
 }>) {
   const [modal, setModal] = useState(initialContext.modal);
   const [project, setProject] = useState(initialContext.currentProject);
-
   function changeChild(child: ReactNode) {
     setModal({
       ...modal,
@@ -49,6 +43,14 @@ function MyContextProvider({children}:  Readonly<{
   function changeProject(project: string) {
     setProject(project)
   }
+
+  useEffect(() => {
+    const sync = () => {
+      setProject(localStorage.getItem('currentProject') || '');
+    };
+    sync();
+  }, []);
+
 
   return (
     <MyContext.Provider value={{ modal, changeChild, closeModal, currentProject: project, changeProject }}>
