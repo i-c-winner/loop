@@ -2,15 +2,14 @@
 /**
  * TODO сделать компонент серверным (handleclick)
  */
-import {Box, Card, Popper, Stack} from '@mui/material';
-import {ButtonGroup, Avatar, Button, Typography, CardContent} from "@mui/material";
+import {Box, Card, Popper} from '@mui/material';
+import {ButtonGroup, Avatar, Button, Typography} from "@mui/material";
 import {useRef, useState} from "react";
-import PersonIcon from '@mui/icons-material/Person';
 import {useContext} from "react";
 import {MyContext} from "@/app/providers/MyContext";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import {useRouter} from "next/navigation";
 import {redirect} from "next/navigation";
+import {LoginForm} from "@/widgets/login/ui/LoginForm";
 
 function Header() {
   const refAvatar = useRef<HTMLDivElement | null>(null)
@@ -65,8 +64,12 @@ function Header() {
       variant={'h5'}>{context.currentProject}</Typography>
     <Box sx={{display: 'flex', justifyContent: 'flex-start', gap: '16px'}}>
       <ButtonGroup variant='contained'>
-        <Button>Login</Button>
-        <Button>Logout</Button>
+        <Button onClick={()=>{
+          context.changeChild(<LoginForm />)
+        }}>Login</Button>
+        <Button
+        onClick={()=>redirect('/')}
+        >Logout</Button>
       </ButtonGroup>
       <Avatar onClick={() => {
         setPopperIsOpen(!popperIsOpen)

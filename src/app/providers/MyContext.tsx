@@ -31,6 +31,7 @@ function MyContextProvider({children}:  Readonly<{
   function changeChild(child: ReactNode) {
     setModal({
       ...modal,
+      isOpen: true,
       contextChildren: child
     });
   }

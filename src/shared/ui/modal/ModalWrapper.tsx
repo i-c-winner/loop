@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 import {Modal, Box} from "@mui/material";
 import React, {useRef, useContext} from "react";
 import {MyContext} from "@/app/providers/MyContext";
@@ -15,6 +15,11 @@ function ModalWrapper() {
     closeModal()
   }
   return <Modal
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
       open={isOpen}
       onClose={(event, reason) => {
         if (reason === 'escapeKeyDown') {
