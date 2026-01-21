@@ -11,7 +11,7 @@ import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
 import {IconButton} from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
 
-function TimeLine() {
+function Registry() {
   return (
     <Box
       sx={{
@@ -107,4 +107,4 @@ function TimeLine() {
   );
 }
 
-export { TimeLine };
+export { Registry };

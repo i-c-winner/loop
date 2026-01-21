@@ -7,7 +7,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import {EChartsOption} from "echarts";
 import {InfoCard} from "@/widgets/infocard/ui/InfoCard";
 import {useEffect} from "react";
-import {TimeLine} from "@/entities/mainFrame/ui/TimeLine";
+import {TimelineBasic} from "@/entities/timeLine/ui/TimeLine";
 
 function Home() {
   const router = useRouter()
@@ -134,6 +134,13 @@ function Home() {
               </ListItem>
             ))}
           </List>
+        </Card>
+        <Card sx={{
+          width: '45%',
+          padding: '16px',
+        }}>
+          <TimelineBasic></TimelineBasic>
+
         </Card>
       </Stack>
 

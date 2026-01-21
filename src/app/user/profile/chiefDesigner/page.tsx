@@ -1,5 +1,5 @@
 function Page() {
-  return <p>Page</p>
+  return <p> Страница с профилем</p>
 }
 
 export default Page

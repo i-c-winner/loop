@@ -37,13 +37,18 @@ function Header() {
       <Button onClick={() => redirect('/project')}>
         Проект
       </Button>
+      <Button onClick={() => redirect('/chat')}>
+        Чат
+      </Button>
       <Button onClick={() => {
         redirect('/user/account/chiefDesigner')
       }}>
         Личный кабинет
       </Button>
-      <Button onClick={() => redirect('/chat')}>
-        Чат
+      <Button onClick={() => {
+        redirect('/user/profile/chiefDesigner')
+      }}>
+        Профиль
       </Button>
       <Button onClick={() => {
       }}>
@@ -72,31 +77,6 @@ function Header() {
           padding: '16px',
         }
       } open={popperIsOpen} anchorEl={anchor}>
-        <Card
-          onClick={() => setPopperIsOpen(false)}
-          sx={{}}>
-          <CardContent >
-            <Stack spacing={1} sx={{
-              alignItems: 'start',
-            }}>
-            <Button variant={'text'}>
-              <Stack
-                onClick={() => router.push('/user/account/chiefDesigner')}
-                direction={'row'} spacing={2}>
-                <PersonIcon></PersonIcon>
-                <Typography variant={'body1'}>
-                  Личный кабинет
-                </Typography>
-              </Stack>
-            </Button>
-            <Button variant={'text'}>
-              <Stack
-                direction={'row'} spacing={2}><ManageAccountsIcon></ManageAccountsIcon><Typography
-                variant={'body1'}>Профиль</Typography></Stack>
-            </Button>
-            </Stack>
-          </CardContent>
-        </Card>
       </Popper>
     </Box>
 

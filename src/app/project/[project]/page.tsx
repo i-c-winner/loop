@@ -3,11 +3,9 @@ import React from 'react';
 import {Card, Tabs, Tab, Box, Typography, Stack} from "@mui/material";
 import {DashboardBox} from "@/entities/dashboard/ui/dashboardBox";
 import {lists} from "@/shared/assets/data/pipeData";
-import {Description} from "@/entities/mainFrame/ui/Description";
-import {Chat} from "@/entities/chat/ui/Chat";
 import {EChartsOption} from "echarts";
 import {UpdateProgres} from "@/features/updateValue/ui/UpdateProgres";
-import {TimeLine} from "@/entities/mainFrame/ui/TimeLine";
+import {Registry} from "@/entities/mainFrame/ui/Registry";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -90,7 +88,7 @@ export default function BasicTabs() {
               }}
             >
             <Typography variant={'h5'}>Реестр переданных файлов</Typography>
-              <TimeLine/>
+              <Registry/>
             </Card>
           </Stack>
           <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)} />
