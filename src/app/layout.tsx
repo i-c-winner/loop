@@ -14,7 +14,7 @@ export default function RootLayout({
     <body >
     <ThemeRegistry>
         <MyContextProvider>
-          <Box width={'100%'} height={'100vh'}>
+          <Box width={'100%'} minHeight={'100vh'}>
           <Header />
             <ModalWrapper />
             {children}

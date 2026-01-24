@@ -33,8 +33,11 @@ function Header() {
       <Button onClick={() => redirect('/')}>
         Home
       </Button>
-      <Button onClick={() => redirect('/project')}>
+      <Button onClick={() => redirect('/project/chiefDesigner')}>
         Проект
+      </Button>
+      <Button onClick={() => redirect('/dashboards/chiefDesigner')}>
+        Дашборд
       </Button>
       <Button onClick={() => redirect('/chat')}>
         Чат

@@ -11,7 +11,7 @@ export const LoginForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     closeModal()
-    redirect('/project')
+    redirect('/project/chiefDesigner')
   }
 
   return (

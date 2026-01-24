@@ -64,7 +64,6 @@ export default function BasicTabs() {
           borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Обзор" {...a11yProps(0)} />
-            {/*<Tab label="Реестр" {...a11yProps(1)} />*/}
           </Tabs>
         </Box>
         <Typography variant={'h4'}>Архитектурные решения</Typography>
@@ -93,9 +92,6 @@ export default function BasicTabs() {
           </Stack>
           <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)} />
         </CustomTabPanel>
-        {/*<CustomTabPanel value={value} index={1}>*/}
-        {/*  <Description/>*/}
-        {/*</CustomTabPanel>*/}
       </Card>
     </Box>
   );

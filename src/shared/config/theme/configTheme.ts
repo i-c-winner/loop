@@ -26,6 +26,12 @@ const config_theme = {
       secondary: {
         main: '#242428'
       },
+      warning: {
+        main: '#ff9800'
+      },
+      error: {
+        main: '#f44336'
+      },
       text: {
         primary: '#171616',
         secondary: '#848fbb',

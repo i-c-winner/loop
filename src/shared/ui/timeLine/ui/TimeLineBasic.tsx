@@ -1,14 +1,15 @@
+'use client'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import {TimelineSeparator, TimelineConnector, TimelineOppositeContent} from '@mui/lab';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import {Typography, Box} from "@mui/material";
+import {sections} from "@/shared/assets/data/pipeData";
 
 function TimelineBasic() {
   return (
     <Box>
-      <Typography variant={'h5'}>Версии проекта</Typography>
       <Timeline>
         <TimelineItem>
           <TimelineOppositeContent>05/05/2025</TimelineOppositeContent>
@@ -19,7 +20,7 @@ function TimelineBasic() {
           <TimelineContent>Version 1.0</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-            <TimelineOppositeContent>15/07/2025</TimelineOppositeContent>
+          <TimelineOppositeContent>15/07/2025</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -39,4 +40,4 @@ function TimelineBasic() {
   );
 }
 
-export {TimelineBasic}
+export  default TimelineBasic
