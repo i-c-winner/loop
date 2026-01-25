@@ -1,12 +1,16 @@
 'use client'
-import {Box, Stack, Card, Typography} from "@mui/material";
-import React from "react";
+import {Box, Stack, Card, Typography, Button} from "@mui/material";
+import React, {useState} from "react";
 import {sections} from "@/shared/assets/data/pipeData";
 import Gauge from "@/widgets/charts/ui/Gauge";
 import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
+import {redirect} from "next/navigation";
+import {ListsProgres} from "@/widgets/listsProgres/ui/listsProgres";
 
 function Page() {
-  return <Box
+  const [currentSection, setCurrentSection]= useState(sections[0])
+  return <Stack
+    spacing={4}
     sx={{
       padding: '128px 64px',
       width: '100%',
@@ -56,21 +60,27 @@ function Page() {
             <Card
               key={index}
               sx={
-              {
-                padding: '8px',
-                textAlign: 'center',
-                flex: '0 0 300px',
-                height: '350px',
-              }
-            }>
-              <Typography
-                noWrap
-                sx={{
-                  textOverflow: 'ellipsis',
-                }}
-                variant={'h5'}>
-                {item}
-              </Typography>
+                {
+                  padding: '8px',
+                  textAlign: 'center',
+                  flex: '0 0 300px',
+                  height: '350px',
+                }
+              }>
+              <Button
+                onClick={() => setCurrentSection(item)}
+                variant={'contained'}
+                sx={{ maxWidth: '90%', minWidth: 0 }}>
+                <Typography
+                  noWrap
+                  sx={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {item}
+                </Typography>
+              </Button>
               <Box
                 sx={{
                   padding: '16px',
@@ -78,7 +88,7 @@ function Page() {
                   width: '100%',
                   height: '80%',
                 }}
-               >
+              >
                 <Gauge key={item}></Gauge>
               </Box>
               <UserBadge name={'Petrov'}/>
@@ -88,7 +98,17 @@ function Page() {
         </Box>
       </Stack>
     </Card>
-  </Box>
+    <Card
+    sx={{
+      padding: '16px',
+      textAlign: 'center',
+    }}
+    >
+      <Typography
+        variant={'h4'}>{currentSection}</Typography>
+      <ListsProgres />
+    </Card>
+  </Stack>
 }
 
 export default Page

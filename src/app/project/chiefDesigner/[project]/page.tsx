@@ -57,23 +57,18 @@ export default function BasicTabs() {
       <Card sx={{
         width: '100%',
         padding: '16px',
+        textAlign: 'center',
       }}>
-        <Box sx={{ borderBottom: 1,
-          height: '50px',
-          backgroundColor: 'background.paper',
-          borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Обзор" {...a11yProps(0)} />
-          </Tabs>
-        </Box>
-        <Typography variant={'h4'}>Архитектурные решения</Typography>
-        <CustomTabPanel value={value} index={0}>
+
+        <Typography m={2} variant={'h4'}>Архитектурные решения</Typography>
+
             <Stack
               spacing={2}
               direction={'row'}
               sx={{
               width: '100%',
             }}>
+
               <Card sx={{
                 width: '45%',
                 padding: '16px',
@@ -91,7 +86,7 @@ export default function BasicTabs() {
             </Card>
           </Stack>
           <UpdateProgres isOpen={popoverIsOpen} value={value} onClose={() => setPopoverOpen(false)} />
-        </CustomTabPanel>
+
       </Card>
     </Box>
   );

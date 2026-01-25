@@ -5,7 +5,10 @@ const optionGauge = {
       type: 'gauge',
       progress: {
         show: true,
-        width: 18
+        width: 18,
+        itemStyle: {
+          color: '#3a3f4b' // красная полоска прогресса
+        }
       },
       axisLine: {
         lineStyle: {
