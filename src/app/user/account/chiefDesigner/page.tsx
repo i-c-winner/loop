@@ -1,8 +1,11 @@
 'use client'
-import {Box, Card, Tab, Tabs, Typography, List,  IconButton, Button, ListItem, Stack} from "@mui/material";
+import {
+  Box, Card, Tab, Tabs, Typography, List, IconButton, Button, ListItem, Stack,
+  TextField
+} from "@mui/material";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import React, {useContext} from "react";
-import {MyContext,} from "@/app/providers/MyContext";
+import {MyContext} from "@/app/providers/MyContext";
 import {sections} from "@/shared/assets/data/pipeData";
 import {projects} from "@/shared/assets/data/pipeData";
 
@@ -13,7 +16,7 @@ interface ITabPanelProps {
 }
 
 function CustomTabPanel(props: ITabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const {children, value, index, ...other} = props;
 
 
   return (
@@ -26,7 +29,7 @@ function CustomTabPanel(props: ITabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3, height: '100%' }}>{children}</Box>}
+      {value === index && <Box sx={{p: 3, height: '100%'}}>{children}</Box>}
     </div>
   );
 }
@@ -37,13 +40,49 @@ function a11yProps(index: number) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
+
 function Page() {
-  const {changeProject, currentProject}=useContext(MyContext)
+
+  const {changeProject, currentProject, changeChild, closeModal} = useContext(MyContext)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   const [value, setValue] = React.useState<number>(0);
-  console.log(currentProject , 'currentProject')
+  console.log(currentProject, 'currentProject')
+  const addProjectElement = () => {
+    return <Stack
+      p={4}
+      sx={{
+        width: '50%',
+        backgroundColor: 'background.paper',
+        alignItems: 'center',
+      }}
+      spacing={2}>
+      <Typography variant="h6">
+        Создать проект
+      </Typography>
+
+      <Stack
+        sx={{
+
+          width: '50%',
+        }}
+        spacing={2}>
+        <TextField id="outlined-basic" label="Короткое название" variant="outlined"/>
+        <TextField id="outlined-basic" label="Полное название" variant="outlined"/>
+      </Stack>
+      <Button
+        variant="outlined"
+        onClick={() => {closeModal()}}
+      >
+        Добавить
+      </Button>
+    </Stack>
+  }
+
+  function addProject() {
+    changeChild(addProjectElement())
+  }
 
   return (
     <Box sx={{
@@ -52,138 +91,144 @@ function Page() {
     }}>
 
       <Card
-      sx={{
-        width: '100%',
-        padding: '16px',
-        marginBottom: '16px',
-      }}>
+        sx={{
+          width: '100%',
+          padding: '16px',
+          marginBottom: '16px',
+        }}>
         <Typography variant={'h4'}>Мои проекты</Typography>
         <List>
           {projects.map((value) => {
             return <ListItem key={value} disableGutters>
               <Stack
-              direction={'row'}
-              spacing={2}
+                direction={'row'}
+                spacing={2}
               >
                 <Button variant={'text'}
-                  onClick={(event)=>{
-                    localStorage.setItem('currentProject', event.currentTarget.textContent as string)
-                    changeProject(event.currentTarget.textContent as string)}}
-                  sx={{
-                    color: value===currentProject? 'text.primary':'text.secondary',
-                    fontWeight: 'bold',
-                  }}
-                  key={value}>
+                        onClick={(event) => {
+                          localStorage.setItem('currentProject', event.currentTarget.textContent as string)
+                          changeProject(event.currentTarget.textContent as string)
+                        }}
+                        sx={{
+                          color: value === currentProject ? 'text.primary' : 'text.secondary',
+                          fontWeight: 'bold',
+                        }}
+                        key={value}>
                   {value}</Button>
               </Stack>
 
             </ListItem>
           })}
         </List>
-        <IconButton aria-label="delete">
+        <IconButton
+          onClick={addProject}
+          aria-label="delete">
           <DataSaverOnIcon
           />
         </IconButton>
       </Card>
-  <Card sx={{
-    width: '100%',
-    padding: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-  }}>
-
-    <Box sx={{ borderBottom: 1,
-      height: '50px',
-      backgroundColor: 'background.paper',
-      borderColor: 'divider' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-        <Tab label="Первый проект" {...a11yProps(0)} />
-        <Tab label="Воторой проект" {...a11yProps(1)} />
-      </Tabs>
-    </Box>
-    <CustomTabPanel value={value} index={0}>
-      <Typography sx={{
-        padding: '64px',
-        fontWeight: 'bold',
-        fontSize: '2rem',
-      }} variant={"body1"}>Управление составом проекта</Typography>
-      <Box sx={{
+      <Card sx={{
         width: '100%',
+        padding: '16px',
         display: 'flex',
-        justifyContent: 'space-between',
+        flexDirection: 'column',
       }}>
-        <Card
-          sx={{
-            flexBasis: '30%',
-            padding: '16px',
-            gap: '16px',
-          }}
-        >
-          <Typography variant={'h4'}>Комплект рабочей документации</Typography>
-          <Box
-          sx={{
-            padding: '16px',
-          }}
-          >
-            {sections.map((value) => {
-              return <Typography key={value} variant={'body2'}>{value}</Typography>
-            })}
-          </Box>
-          <IconButton aria-label="delete">
-          <DataSaverOnIcon
-          />
-          </IconButton>
-        </Card>
-        <Card
-          sx={{
-            flexBasis: '30%',
-            padding: '16px',
-          }}
-        >
-          <Typography variant={'h4'}>Список разработчиков</Typography>
-          <Box
-          sx={{
-            padding: '16px',
-          }}
-          >
-            {['Ivanov', 'Petrov', 'Sidorov'].map((value) => {
-              return <Typography key={value} variant={'body2'}>{value}</Typography>
-            })}
-          </Box>
-          <IconButton aria-label="delete">
-            <DataSaverOnIcon
-            />
-          </IconButton>
-        </Card>
-        <Card
-          sx={{
-            flexBasis: '30%',
-            padding: '16px',
-          }}
-        >
-          <Typography variant={'h4'}>Список других лиц</Typography>
+
+        <Box sx={{
+          borderBottom: 1,
+          height: '50px',
+          backgroundColor: 'background.paper',
+          borderColor: 'divider'
+        }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Первый проект" {...a11yProps(0)} />
+            <Tab label="Воторой проект" {...a11yProps(1)} />
+          </Tabs>
+        </Box>
+        <CustomTabPanel value={value} index={0}>
+          <Typography sx={{
+            padding: '64px',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+          }} variant={"body1"}>Управление составом проекта</Typography>
           <Box sx={{
-            padding: '16px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
           }}>
+            <Card
+              sx={{
+                flexBasis: '30%',
+                padding: '16px',
+                gap: '16px',
+              }}
+            >
+              <Typography variant={'h4'}>Комплект рабочей документации</Typography>
+              <Box
+                sx={{
+                  padding: '16px',
+                }}
+              >
+                {sections.map((value) => {
+                  return <Typography key={value} variant={'body2'}>{value}</Typography>
+                })}
+              </Box>
+              <IconButton aria-label="delete">
+                <DataSaverOnIcon
+                />
+              </IconButton>
+            </Card>
+            <Card
+              sx={{
+                flexBasis: '30%',
+                padding: '16px',
+              }}
+            >
+              <Typography variant={'h4'}>Список разработчиков</Typography>
+              <Box
+                sx={{
+                  padding: '16px',
+                }}
+              >
+                {['Ivanov', 'Petrov', 'Sidorov'].map((value) => {
+                  return <Typography key={value} variant={'body2'}>{value}</Typography>
+                })}
+              </Box>
+              <IconButton aria-label="delete">
+                <DataSaverOnIcon
+                />
+              </IconButton>
+            </Card>
+            <Card
+              sx={{
+                flexBasis: '30%',
+                padding: '16px',
+              }}
+            >
+              <Typography variant={'h4'}>Список других лиц</Typography>
+              <Box sx={{
+                padding: '16px',
+              }}>
+              </Box>
+              <IconButton aria-label="delete">
+                <DataSaverOnIcon
+                />
+              </IconButton>
+            </Card>
           </Box>
-          <IconButton aria-label="delete">
-            <DataSaverOnIcon
-            />
-          </IconButton>
-        </Card>
-      </Box>
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index={1}>
-    </CustomTabPanel>
-    <Button
-      sx={{
-        alignSelf: 'end',
-        width: '70px',
-      }}
-      disabled={true}
-      variant={'contained'}>Save</Button>
-  </Card>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={1}>
+        </CustomTabPanel>
+        <Button
+          sx={{
+            alignSelf: 'end',
+            width: '70px',
+          }}
+          disabled={true}
+          variant={'contained'}>Save</Button>
+      </Card>
     </Box>
   )
 }
+
 export default Page
