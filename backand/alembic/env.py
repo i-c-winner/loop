@@ -15,6 +15,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from app.core.database import Base
+import app.models  # noqa: F401
 
 config = context.config
 

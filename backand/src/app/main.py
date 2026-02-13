@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1 import api_router
 from app.core.config import settings
+from app.core.database import SessionLocal
+from app.core.startup import ensure_admin_user
 
 app = FastAPI(
     title=settings.project_name,
@@ -20,6 +22,15 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix=settings.api_v1_prefix)
+
+
+@app.on_event("startup")
+def on_startup():
+    db = SessionLocal()
+    try:
+        ensure_admin_user(db)
+    finally:
+        db.close()
 
 
 @app.get("/")
