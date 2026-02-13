@@ -1,0 +1,14 @@
+@import url('../assets/fonts/ggsans/stylesheet.css');
+
+:root {
+  --background: #121214;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+}
+
+.main {
+    display: flex;
+}
