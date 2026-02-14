@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.api.v1.deps import get_current_user, require_roles
 from app.core.database import get_db
 from app.models.project import Project
+from app.models.project_member import ProjectMember
 from app.models.task import Task
 from app.models.user import User
 from app.schemas.enums import TaskStatus
@@ -24,6 +25,12 @@ def list_tasks(
 
     if current_user.role == "chief":
         query = query.filter(Project.owner_id == current_user.id)
+    elif current_user.role == "designer":
+        query = query.join(
+            ProjectMember,
+            (ProjectMember.project_id == Project.id)
+            & (ProjectMember.user_id == current_user.id),
+        )
     elif current_user.role != "admin":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

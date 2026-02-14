@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.api.v1.deps import get_current_user, require_roles
 from app.core.database import get_db
 from app.models.project import Project
+from app.models.project_member import ProjectMember
 from app.models.user import User
 from app.schemas.project import ProjectRead
 from pydantic import BaseModel
@@ -29,6 +30,14 @@ def list_projects(
         return (
             db.query(Project)
             .filter(Project.owner_id == current_user.id)
+            .order_by(Project.id.desc())
+            .all()
+        )
+    if current_user.role == "designer":
+        return (
+            db.query(Project)
+            .join(ProjectMember, ProjectMember.project_id == Project.id)
+            .filter(ProjectMember.user_id == current_user.id)
             .order_by(Project.id.desc())
             .all()
         )

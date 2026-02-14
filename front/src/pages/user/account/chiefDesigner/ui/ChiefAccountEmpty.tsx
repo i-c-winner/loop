@@ -484,7 +484,7 @@ export default function ChiefAccountEmpty() {
       };
 
       await postJsonToFirstAvailableEndpoint(
-        ['/api/v1/tasks', '/api/v1/design/tasks'],
+        ['/api/v1/tasks'],
         {
           project_id: projectIdFromContext,
           assignee_id: assigneeId,
