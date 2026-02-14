@@ -35,6 +35,16 @@ type DesignerOption = {
   label: string;
 };
 
+type TaskItem = {
+  id: number;
+  project_id: number | null;
+  assignee_id: number | null;
+  title: string;
+  description: string;
+  progress: number;
+  status: string;
+};
+
 export default function ChiefAccountEmpty() {
   const { currentProjectId, changeProject, changeProjectId } = useContext(MyContext);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -56,6 +66,10 @@ export default function ChiefAccountEmpty() {
   const [taskLoading, setTaskLoading] = useState(false);
   const [taskError, setTaskError] = useState<string | null>(null);
   const [taskSuccess, setTaskSuccess] = useState<string | null>(null);
+  const [tasks, setTasks] = useState<TaskItem[]>([]);
+  const [tasksLoading, setTasksLoading] = useState(false);
+  const [tasksError, setTasksError] = useState<string | null>(null);
+  const [tasksReloadSeq, setTasksReloadSeq] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
@@ -209,6 +223,37 @@ export default function ChiefAccountEmpty() {
     return Array.from(byId.values());
   }
 
+  function toTaskItems(payload: unknown): TaskItem[] {
+    const asArray = Array.isArray(payload)
+      ? payload
+      : payload && typeof payload === 'object' && Array.isArray((payload as { items?: unknown[] }).items)
+      ? (payload as { items: unknown[] }).items
+      : [];
+
+    return asArray
+      .map((item): TaskItem | null => {
+        if (!item || typeof item !== 'object') return null;
+        const raw = item as Record<string, unknown>;
+        const id = Number(raw.id);
+        if (!Number.isFinite(id)) return null;
+
+        const projectId = Number(raw.project_id);
+        const assigneeId = Number(raw.assignee_id);
+        const progress = Number(raw.progress);
+
+        return {
+          id,
+          project_id: Number.isFinite(projectId) ? projectId : null,
+          assignee_id: Number.isFinite(assigneeId) ? assigneeId : null,
+          title: typeof raw.title === 'string' ? raw.title : '',
+          description: typeof raw.description === 'string' ? raw.description : '',
+          progress: Number.isFinite(progress) ? progress : 0,
+          status: typeof raw.status === 'string' ? raw.status : '',
+        };
+      })
+      .filter((task): task is TaskItem => task !== null);
+  }
+
   useEffect(() => {
     async function loadDesigners() {
       const projectIdFromContext = Number(currentProjectId);
@@ -283,6 +328,58 @@ export default function ChiefAccountEmpty() {
 
     loadDesigners();
   }, [apiBaseUrl, currentProjectId]);
+
+  useEffect(() => {
+    async function loadTasks() {
+      const projectIdFromContext = Number(currentProjectId);
+      const assigneeId = Number(taskAssigneeId);
+      if (!Number.isFinite(projectIdFromContext)) {
+        setTasks([]);
+        setTasksError(null);
+        return;
+      }
+      if (!Number.isFinite(assigneeId) || assigneeId < 1) {
+        setTasks([]);
+        setTasksError(null);
+        return;
+      }
+
+      try {
+        setTasksLoading(true);
+        setTasksError(null);
+
+        const token = localStorage.getItem('authToken');
+        const headers: HeadersInit = {
+          accept: 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        };
+        const response = await fetch(
+          `${apiBaseUrl}/api/v1/tasks?project_id=${projectIdFromContext}&assignee_id=${assigneeId}`,
+          {
+          method: 'GET',
+          headers,
+          credentials: 'include',
+          }
+        );
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || 'Не удалось загрузить список задач');
+        }
+
+        const text = await response.text();
+        const payload = text ? JSON.parse(text) : [];
+        setTasks(toTaskItems(payload));
+      } catch (loadTasksError) {
+        setTasks([]);
+        setTasksError(loadTasksError instanceof Error ? loadTasksError.message : 'Не удалось загрузить список задач');
+      } finally {
+        setTasksLoading(false);
+      }
+    }
+
+    loadTasks();
+  }, [apiBaseUrl, currentProjectId, taskAssigneeId, tasksReloadSeq]);
 
   async function handleCreateDesigner(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -369,7 +466,7 @@ export default function ChiefAccountEmpty() {
       if (!Number.isFinite(projectIdFromContext)) {
         throw new Error('Текущий проект в контексте не выбран');
       }
-      if (!Number.isFinite(assigneeId)) {
+      if (!Number.isFinite(assigneeId) || assigneeId < 1) {
         throw new Error('Выберите designer для задачи');
       }
       if (!taskTitle.trim()) {
@@ -399,31 +496,32 @@ export default function ChiefAccountEmpty() {
         headers
       );
 
-      setTaskSuccess(`Task создана и назначена designer #${assigneeId}`);
+      setTaskSuccess(`Раздел создан и назначен исполнитель #${assigneeId}`);
       setTaskTitle('');
       setTaskDescription('');
       setTaskProgress('0');
       setTaskStatus('todo');
+      setTasksReloadSeq((prev) => prev + 1);
     } catch (createTaskError) {
-      setTaskError(createTaskError instanceof Error ? createTaskError.message : 'Не удалось создать task');
+      setTaskError(createTaskError instanceof Error ? createTaskError.message : 'Не удалось создать раздел');
     } finally {
       setTaskLoading(false);
     }
   }
 
-  const formatDate = (value: string) => {
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) {
-      return value;
+  const designerLabelsById = useMemo(() => {
+    const map = new Map<number, string>();
+    for (const designer of designers) {
+      map.set(designer.id, designer.label);
     }
-    return date.toLocaleString('ru-RU');
-  };
+    return map;
+  }, [designers]);
 
   return (
     <Box sx={{ p: { xs: 2, md: 3 } }}>
       <Card sx={{ p: { xs: 2, md: 3 } }}>
         <Typography variant="h5" sx={{ mb: 2 }}>
-          Личный кабинет chief
+          Личный кабинет
         </Typography>
 
         {loading && <Alert severity="info">Загрузка проектов...</Alert>}
@@ -451,31 +549,95 @@ export default function ChiefAccountEmpty() {
 
             {activeProject && (
               <Stack spacing={2}>
-                <TableContainer sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
-                  <Table size="small">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Название</TableCell>
-                        <TableCell>Описание</TableCell>
-                        <TableCell>Owner ID</TableCell>
-                        <TableCell>Создан</TableCell>
-                        <TableCell>Обновлён</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow hover>
-                        <TableCell>{activeProject.id}</TableCell>
-                        <TableCell>{activeProject.name}</TableCell>
-                        <TableCell>{activeProject.description || '—'}</TableCell>
-                        <TableCell>{activeProject.owner_id}</TableCell>
-                        <TableCell>{formatDate(activeProject.created_at)}</TableCell>
-                        <TableCell>{formatDate(activeProject.updated_at)}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                <Stack direction={{ xs: 'column', lg: 'row' }} spacing={2}>
+                  <Box
+                    sx={{
+                      flex: 1,
+                      p: 2,
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      borderRadius: 2,
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ mb: 2 }}>
+                      Список designer
+                    </Typography>
+                    {designersLoading && <Alert severity="info">Загрузка designer...</Alert>}
+                    {!designersLoading && designersError && <Alert severity="warning">{designersError}</Alert>}
+                    {!designersLoading && !designersError && designers.length === 0 && (
+                      <Alert severity="warning">Designer для проекта не найдены.</Alert>
+                    )}
+                    {!designersLoading && !designersError && designers.length > 0 && (
+                      <TableContainer sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+                        <Table size="small">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>ID</TableCell>
+                              <TableCell>Имя</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {designers.map((designer) => (
+                              <TableRow key={designer.id} hover>
+                                <TableCell>{designer.id}</TableCell>
+                                <TableCell>{designer.label}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    )}
+                  </Box>
 
+                  <Box
+                    sx={{
+                      flex: 1,
+                      p: 2,
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      borderRadius: 2,
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ mb: 2 }}>
+                      Список tasks
+                    </Typography>
+                    {tasksLoading && <Alert severity="info">Загрузка задач...</Alert>}
+                    {!tasksLoading && tasksError && <Alert severity="warning">{tasksError}</Alert>}
+                    {!tasksLoading && !tasksError && tasks.length === 0 && (
+                      <Alert severity="warning">Задачи для проекта не найдены.</Alert>
+                    )}
+                    {!tasksLoading && !tasksError && tasks.length > 0 && (
+                      <TableContainer sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+                        <Table size="small">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>ID</TableCell>
+                              <TableCell>Title</TableCell>
+                              <TableCell>Designer</TableCell>
+                              <TableCell>Progress</TableCell>
+                              <TableCell>Status</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {tasks.map((task) => (
+                              <TableRow key={task.id} hover>
+                                <TableCell>{task.id}</TableCell>
+                                <TableCell>{task.title || '—'}</TableCell>
+                                <TableCell>
+                                  {task.assignee_id != null
+                                    ? (designerLabelsById.get(task.assignee_id) ?? `Designer #${task.assignee_id}`)
+                                    : '—'}
+                                </TableCell>
+                                <TableCell>{task.progress}</TableCell>
+                                <TableCell>{task.status || '—'}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    )}
+                  </Box>
+                </Stack>
                 <Stack direction={{ xs: 'column', lg: 'row' }} spacing={2}>
                   <Box
                     component="form"
@@ -489,7 +651,7 @@ export default function ChiefAccountEmpty() {
                     }}
                   >
                     <Typography variant="h6" sx={{ mb: 2 }}>
-                      Создать designer для проекта
+                      Добавить исполнителя для проекта
                     </Typography>
 
                     <Stack spacing={2}>
@@ -540,7 +702,7 @@ export default function ChiefAccountEmpty() {
                     }}
                   >
                     <Typography variant="h6" sx={{ mb: 2 }}>
-                      Создать task
+                      Создать раздел
                     </Typography>
 
                     <Stack spacing={2}>
@@ -548,7 +710,11 @@ export default function ChiefAccountEmpty() {
                         select
                         label="Designer (assignee)"
                         value={taskAssigneeId}
-                        onChange={(event) => setTaskAssigneeId(Number(event.target.value))}
+                        onChange={(event) => {
+                          const raw = event.target.value;
+                          const normalized = typeof raw === 'string' ? Number(raw) : Number(raw);
+                          setTaskAssigneeId(Number.isFinite(normalized) && normalized >= 1 ? normalized : '');
+                        }}
                         fullWidth
                         disabled={designersLoading || designers.length === 0}
                         required
@@ -575,28 +741,6 @@ export default function ChiefAccountEmpty() {
                         multiline
                         minRows={3}
                       />
-                      <TextField
-                        label="Progress"
-                        type="number"
-                        value={taskProgress}
-                        onChange={(event) => setTaskProgress(event.target.value)}
-                        inputProps={{ min: 0, max: 100 }}
-                        required
-                        fullWidth
-                      />
-                      <TextField
-                        select
-                        label="Status"
-                        value={taskStatus}
-                        onChange={(event) => setTaskStatus(event.target.value)}
-                        fullWidth
-                        required
-                      >
-                        <MenuItem value="todo">todo</MenuItem>
-                        <MenuItem value="in_progress">in_progress</MenuItem>
-                        <MenuItem value="done">done</MenuItem>
-                      </TextField>
-
                       {designersError && <Alert severity="warning">{designersError}</Alert>}
                       {taskError && <Alert severity="error">{taskError}</Alert>}
                       {taskSuccess && <Alert severity="success">{taskSuccess}</Alert>}
@@ -607,12 +751,14 @@ export default function ChiefAccountEmpty() {
                           variant="contained"
                           disabled={taskLoading || designersLoading || designers.length === 0}
                         >
-                          {taskLoading ? 'Создание...' : 'Создать task'}
+                          {taskLoading ? 'Создание...' : 'Создать раздел'}
                         </Button>
                       </Box>
                     </Stack>
                   </Box>
                 </Stack>
+
+
               </Stack>
             )}
           </>
