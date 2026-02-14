@@ -22,9 +22,8 @@ class ProjectMember(Base):
         ForeignKey(f"{APP_SCHEMA}.users.id", ondelete="CASCADE"),
         primary_key=True,
     )
-    role = Column(project_role_enum, nullable=False, server_default=text("'viewer'"))
+    role = Column(project_role_enum, nullable=False, server_default=text("'pm'"))
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
 
     project = relationship("Project", back_populates="members")
     user = relationship("User", back_populates="memberships")
-

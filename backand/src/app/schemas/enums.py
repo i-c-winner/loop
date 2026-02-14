@@ -2,8 +2,9 @@ from enum import Enum
 
 
 class ProjectRole(str, Enum):
-    owner = "owner"
-    viewer = "viewer"
+    chief = "chief"
+    designer = "designer"
+    pm = "pm"
 
 
 class TaskStatus(str, Enum):

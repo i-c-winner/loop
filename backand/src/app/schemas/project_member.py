@@ -8,7 +8,7 @@ from app.schemas.enums import ProjectRole
 class ProjectMemberBase(BaseModel):
     project_id: int
     user_id: int
-    role: ProjectRole = ProjectRole.viewer
+    role: ProjectRole = ProjectRole.pm
 
 
 class ProjectMemberCreate(ProjectMemberBase):
@@ -19,4 +19,3 @@ class ProjectMemberRead(ProjectMemberBase):
     model_config = ConfigDict(from_attributes=True)
 
     created_at: datetime
-

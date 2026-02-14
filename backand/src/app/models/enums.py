@@ -1,10 +1,11 @@
 from sqlalchemy import Enum
 
-APP_SCHEMA = "app"
+APP_SCHEMA = "design"
 
 project_role_enum = Enum(
-    "owner",
-    "viewer",
+    "chief",
+    "designer",
+    "pm",
     name="project_role",
     schema=APP_SCHEMA,
 )

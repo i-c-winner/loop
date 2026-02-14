@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 
 from app.core.database import Base
 
-APP_SCHEMA = "app"
+APP_SCHEMA = "design"
 
 
 class Project(Base):
@@ -35,4 +35,3 @@ class Project(Base):
         back_populates="project",
         cascade="all, delete-orphan",
     )
-
