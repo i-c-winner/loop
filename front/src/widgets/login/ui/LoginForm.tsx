@@ -1,88 +1,43 @@
-import { useState, useContext, useEffect } from 'react'
-import { TextField, Button, Box, Typography, MenuItem } from '@mui/material'
+import { useContext, useState } from 'react'
+import { Alert, Box, Button, Divider, Stack, TextField, Typography } from '@mui/material'
 import {useRouter} from "next/navigation";
-import {MyContext} from "@/app/providers/MyContext";
+import {MyContext} from "@/shared/lib/context/app-context";
 
-type LoginProject = {
-  id: number
-  second_name?: string
+type LoginResponse = {
+  role?: string
+  email?: string
   full_name?: string
-  name?: string
-  title?: string
+  is_active?: boolean
+  id?: number
+  created_at?: string
+  access_token?: string
+  token_type?: string
+}
+
+type AuthMeResponse = {
+  role?: string
 }
 
 export const LoginForm = () => {
   const router = useRouter()
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
-  const [projects, setProjects] = useState<LoginProject[]>([])
-  const [selectedProjectId, setSelectedProjectId] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const [authError, setAuthError] = useState<string | null>(null)
-  const {closeModal, changeRole, changeProject, changeProjectId, changeAuthStatus} = useContext(MyContext)
+  const {closeModal, changeRole, changeAuthStatus} = useContext(MyContext)
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
-  const mockProjects: LoginProject[] = [
-    { id: 1, second_name: 'first', full_name: 'First Project' },
-    { id: 2, second_name: 'second', full_name: 'Second Project' },
-  ]
-
-  const getProjectShortName = (project: LoginProject): string => {
-    return project.second_name ?? project.full_name ?? project.name ?? project.title ?? `project-${project.id}`
-  }
-
-  const normalizeProjects = (raw: unknown): LoginProject[] => {
-    if (!Array.isArray(raw)) return []
-    return raw
-      .map((item) => {
-        if (!item || typeof item !== 'object') return null
-        const id = Number((item as { id?: unknown }).id)
-        if (!Number.isFinite(id) || id <= 0) return null
-        const project = item as LoginProject
-        return {
-          id,
-          second_name: typeof project.second_name === 'string' ? project.second_name : undefined,
-          full_name: typeof project.full_name === 'string' ? project.full_name : undefined,
-          name: typeof project.name === 'string' ? project.name : undefined,
-          title: typeof project.title === 'string' ? project.title : undefined,
-        }
-      })
-      .filter((item): item is LoginProject => item !== null)
-  }
-
-  useEffect(() => {
-    const applyProjects = (items: LoginProject[]) => {
-      setProjects(items)
-      if (!items.length) {
-        setSelectedProjectId('')
-        return
-      }
-      const storedId = localStorage.getItem('currentProjectId')
-      const hasStored = storedId && items.some((project) => String(project.id) === storedId)
-      setSelectedProjectId(hasStored ? String(storedId) : String(items[0].id))
+  const getRoleFromToken = (token: string): string | null => {
+    try {
+      const payloadPart = token.split('.')[1]
+      if (!payloadPart) return null
+      const base64 = payloadPart.replace(/-/g, '+').replace(/_/g, '/')
+      const json = atob(base64)
+      const parsed = JSON.parse(json) as { role?: unknown }
+      return typeof parsed.role === 'string' ? parsed.role : null
+    } catch {
+      return null
     }
-
-    const cached = localStorage.getItem('projects')
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached)
-        const normalized = normalizeProjects(parsed)
-        if (normalized.length) {
-          applyProjects(normalized)
-          return
-        }
-      } catch {
-        // ignore invalid cache
-      }
-    }
-    localStorage.setItem('projects', JSON.stringify(mockProjects))
-    applyProjects(mockProjects)
-  }, [])
-
-  const resolveRole = (email: string): string => {
-    const value = email.trim().toLowerCase()
-    if (value.includes('admin')) return 'admin'
-    if (value.includes('chief')) return 'chief'
-    return 'designer'
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -95,32 +50,62 @@ export const LoginForm = () => {
         throw new Error('Введите email и пароль')
       }
 
-      const dbRole = resolveRole(login)
-      localStorage.removeItem('authToken')
-      localStorage.setItem('role', dbRole)
-      localStorage.setItem('authStatus', 'loginin')
-      changeRole(dbRole)
-      changeAuthStatus('loginin')
-      const projectId = Number(selectedProjectId)
-      const selectedProject = projects.find((project) => project.id === projectId)
+      const payload = new URLSearchParams()
+      payload.set('username', login.trim())
+      payload.set('password', password)
 
-      if (selectedProject) {
-        const shortName = getProjectShortName(selectedProject)
-        localStorage.setItem('currentProject', shortName)
-        localStorage.setItem('currentProjectId', String(selectedProject.id))
-        localStorage.setItem('registrationProjectId', String(selectedProject.id))
-        changeProject(shortName)
-        changeProjectId(String(selectedProject.id))
-      } else {
-        localStorage.removeItem('currentProject')
-        localStorage.removeItem('currentProjectId')
-        localStorage.removeItem('registrationProjectId')
-        changeProject('')
-        changeProjectId('')
+      const loginResponse = await fetch(`${apiBaseUrl}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: payload.toString(),
+        credentials: 'include',
+      })
+
+      if (!loginResponse.ok) {
+        const errorText = await loginResponse.text()
+        throw new Error(errorText || 'Неверный логин или пароль')
       }
+
+      const loginData = (await loginResponse.json()) as LoginResponse
+      let roleFromResponse = typeof loginData.role === 'string' ? loginData.role : null
+
+      if (!roleFromResponse && loginData.access_token) {
+        roleFromResponse = getRoleFromToken(loginData.access_token)
+      }
+
+      if (!roleFromResponse && loginData.access_token) {
+        const meResponse = await fetch(`${apiBaseUrl}/api/v1/auth/me`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${loginData.access_token}`,
+          },
+          credentials: 'include',
+        })
+        if (meResponse.ok) {
+          const meData = (await meResponse.json()) as AuthMeResponse
+          if (typeof meData.role === 'string') {
+            roleFromResponse = meData.role
+          }
+        }
+      }
+
+      if (!roleFromResponse) {
+        throw new Error('В ответе login нет role')
+      }
+
+      if (loginData.access_token) {
+        localStorage.setItem('authToken', loginData.access_token)
+      } else {
+        localStorage.removeItem('authToken')
+      }
+
+      changeRole(roleFromResponse)
+      changeAuthStatus('loginin')
       localStorage.removeItem('currentChiefId')
     } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'Ошибка аутентификации')
+      setAuthError(error instanceof Error ? error.message : 'Ошибка авторизации')
       setIsLoading(false)
       return
     } finally {
@@ -136,59 +121,48 @@ export const LoginForm = () => {
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-        width: 300,
+        width: { xs: 300, md: 360 },
         backgroundColor: 'background.paper',
-        border: '1px solid #ccc',
-        padding: 2,
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: '16px',
+        p: 3,
+        boxShadow: '0 16px 40px rgba(15,111,255,0.12)',
       }}
     >
-      <TextField
-        label="Email"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-        type="text"
-        required
-      />
+      <Stack spacing={2}>
+        <Box>
+          <Typography variant="h5">Вход в систему</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Используйте корпоративные учетные данные.
+          </Typography>
+        </Box>
+        <Divider />
 
-      <TextField
-        label="Пароль"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        type="password"
-        required
-      />
+        <TextField
+          label="Email"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          type="text"
+          required
+          fullWidth
+        />
 
-      <TextField
-        select
-        label="Проект"
-        value={selectedProjectId}
-        onChange={(e) => setSelectedProjectId(e.target.value)}
-      >
-        <MenuItem value="">Без проекта</MenuItem>
-        {projects.length === 0 && (
-          <MenuItem value="" disabled>
-            Нет проектов
-          </MenuItem>
-        )}
-        {projects.map((project) => (
-          <MenuItem key={project.id} value={String(project.id)}>
-            {getProjectShortName(project)}
-          </MenuItem>
-        ))}
-      </TextField>
+        <TextField
+          label="Пароль"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          required
+          fullWidth
+        />
 
-      {authError && (
-        <Typography variant="body2" color="error">
-          {authError}
-        </Typography>
-      )}
+        {authError && <Alert severity="error">{authError}</Alert>}
 
-      <Button type="submit" variant="contained" disabled={isLoading}>
-        {isLoading ? 'Проверка...' : 'Отправить'}
-      </Button>
+        <Button type="submit" variant="contained" disabled={isLoading}>
+          {isLoading ? 'Проверка...' : 'Войти'}
+        </Button>
+      </Stack>
     </Box>
   )
 }

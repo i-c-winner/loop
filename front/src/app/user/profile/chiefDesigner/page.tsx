@@ -1,5 +1,5 @@
-function Page() {
-  return <p> Страница с профилем</p>
-}
+import ChiefDesignerProfilePage from '@/pages/user/profile/chiefDesigner/ui/ChiefDesignerProfilePage';
 
-export default Page
+export default function Page() {
+  return <ChiefDesignerProfilePage />;
+}

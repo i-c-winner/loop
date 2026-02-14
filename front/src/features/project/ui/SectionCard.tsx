@@ -9,11 +9,11 @@ import {
   Button
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import {Controller, useFieldArray} from "react-hook-form";
+import {Controller, type Control, type FieldValues, useFieldArray} from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 type SectionCardProps = {
-  control: any;
+  control: Control<FieldValues>;
   index: number;
   onRemove: () => void;
 };

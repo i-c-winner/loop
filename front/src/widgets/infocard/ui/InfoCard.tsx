@@ -1,29 +1,25 @@
-import {Box, Typography, Card} from "@mui/material";
+import { Card, Stack, Typography } from '@mui/material';
 
 function InfoCard(props: {
   parms: {
-    title: string,
-    subtitle: string,
-    value: string
-  }
+    title: string;
+    subtitle: string;
+    value: string;
+  };
 }) {
-  return <Card sx={{
-    padding: '16px',
-    flexGrow: 1
-  }}>
-    <Typography sx={{
-      variant: 'h6',
-    }}>{props.parms.title}</Typography>
-    <Typography sx={{
-      fontWeight: 'bold',
-      fontSize: '2rem',
-    }}>
-      {props.parms.value}
-    </Typography>
-    <Typography sx={{
-      variant: 'subtitle1',
-    }}>{props.parms.subtitle}</Typography>
-  </Card>
-
+  return (
+    <Card sx={{ p: 2.5, flexGrow: 1, minHeight: 156 }}>
+      <Stack spacing={1}>
+        <Typography variant="overline" color="text.secondary">
+          {props.parms.title}
+        </Typography>
+        <Typography variant="h3">{props.parms.value}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.parms.subtitle}
+        </Typography>
+      </Stack>
+    </Card>
+  );
 }
-export {InfoCard}
+
+export { InfoCard };

@@ -1,108 +1,69 @@
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import {Download} from "@mui/icons-material";
-import {UserBadge} from "@/widgets/userBadge/ui/UserBadge";
-import {IconButton} from "@mui/material";
-import LaunchIcon from "@mui/icons-material/Launch";
+import Typography from '@mui/material/Typography';
+import DownloadIcon from '@mui/icons-material/Download';
+import LaunchIcon from '@mui/icons-material/Launch';
+
+const rows = [
+  { date: '03.02.25', name: 'Техническое задание', author: 'Ivanov', recipient: 'Petrov' },
+  { date: '15.03.25', name: 'Лист 1, 2, 5-11', author: 'Ivanov', recipient: 'Petrov' },
+  { date: '20.03.25', name: 'Пояснительная записка', author: 'Petrov', recipient: 'Ivanov' },
+];
 
 function Registry() {
   return (
-    <Box
-      sx={{
-      minWidth: '500px',
-      boxSizing: 'border-box',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-      <Box
+    <Box sx={{ width: '100%' }}>
+      <TableContainer
         sx={{
-        flex: 1,
-        overflowY: 'auto',
-        padding: 1,
-        paddingTop: 0,
-      }}>
-      </Box>
-        <TableContainer sx={{
-          height: '100%',
-          backgroundColor: 'background.paper',
-          padding: 1,
-          paddingBottom: 0,
-          color: 'text.primary',
-          boxSizing: 'border-box',
-        }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Дата</TableCell>
-                <TableCell>Наименование</TableCell>
-                <TableCell>Автор</TableCell>
-                <TableCell>Получатель</TableCell>
-                <TableCell>Открыть</TableCell>
-                <TableCell>Скачать</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>03.02.25</TableCell>
-                <TableCell>Техническое задание</TableCell>
-                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
-                <TableCell><UserBadge name={'Petrov'}/></TableCell>
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '14px',
+          overflow: 'hidden',
+        }}
+      >
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Дата</TableCell>
+              <TableCell>Наименование</TableCell>
+              <TableCell>Автор</TableCell>
+              <TableCell>Получатель</TableCell>
+              <TableCell align="center">Открыть</TableCell>
+              <TableCell align="center">Скачать</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <TableRow key={`${row.name}-${index}`} hover>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.name}</TableCell>
                 <TableCell>
-                  <IconButton
-                    aria-label="comment">
-                    <LaunchIcon/>
-                  </IconButton>
+                  <Typography variant="body2">{row.author}</Typography>
                 </TableCell>
                 <TableCell>
-                  <IconButton>
-                    <Download />
+                  <Typography variant="body2">{row.recipient}</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <IconButton aria-label="open" size="small">
+                    <LaunchIcon fontSize="small" />
+                  </IconButton>
+                </TableCell>
+                <TableCell align="center">
+                  <IconButton aria-label="download" size="small">
+                    <DownloadIcon fontSize="small" />
                   </IconButton>
                 </TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell>15.03.25</TableCell>
-                <TableCell>Лист 1, 2, 5-11</TableCell>
-                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
-                <TableCell><UserBadge name={'Petrov'}/></TableCell>
-                <TableCell>
-                  <IconButton
-                    aria-label="comment">
-                    <LaunchIcon/>
-                  </IconButton>
-                </TableCell>
-                <TableCell>
-                  < IconButton>
-                    <Download />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>20.03.25</TableCell>
-                <TableCell>Пояснительная записка</TableCell>
-                <TableCell><UserBadge name={'Petrov'}/></TableCell>
-                <TableCell><UserBadge name={'Ivanov'}/></TableCell>
-                <TableCell>
-                  <IconButton
-                    aria-label="comment">
-                    <LaunchIcon/>
-                  </IconButton>
-                </TableCell>
-                <TableCell>
-                  <IconButton>
-                    <Download />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 }

@@ -1,26 +1,25 @@
-'use client'
-import {useState} from "react";
-import {Box, Typography} from "@mui/material";
+'use client';
+import {Box} from "@mui/material";
 import {EChartsOption} from "echarts";
-import {Bar} from "@/widgets/charts/ui/Bar";
-import {UpdateProgres} from "@/features/updateValue/ui/UpdateProgres";
+import { Dashboard } from "@/entities/dashboard/ui/dashboard";
 
 function DashboardBox(props: {
-  options: EChartsOption,
-  actions?: (value: number, list: string) => void,
-  isOpen?: boolean
+  options: EChartsOption;
+  actions?: (value: number, list: string) => void;
+  isOpen?: boolean;
 }) {
-  console.log(props)
-
-  const [isOpen, setIsOpen] = useState(props.isOpen ?? false);
-  // @ts-ignore
-  const length=props.options.yAxis?.data.length;
+  const yAxis = props.options.yAxis;
+  const firstAxis = Array.isArray(yAxis) ? yAxis[0] : yAxis;
+  const labels = firstAxis && typeof firstAxis === 'object' && 'data' in firstAxis
+    ? firstAxis.data
+    : undefined;
+  const length = Array.isArray(labels) ? labels.length : 1;
   return (
     <Box sx={{
       overflowY: 'auto',
       textAlign: 'center',
     }}>
-      <Bar options={props.options} actions={props.actions}/>
+      <Dashboard option={props.options} onSelect={props.actions} size={Math.max(320, length * 40)} />
     </Box>
   );
 }

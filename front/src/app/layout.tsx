@@ -1,5 +1,5 @@
 import { ThemeRegistry } from "@/app/theme/ThemeRegistry";
-import { MyContextProvider } from "@/app/providers/MyContext";
+import { MyContextProvider } from "@/shared/lib/context/app-context";
 import { ClientLayout } from "@/app/ui/ClientLayout";
 
 export default function RootLayout({

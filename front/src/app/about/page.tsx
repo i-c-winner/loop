@@ -1,4 +1,5 @@
-function AboutPage() {
-  return <p>About</p>
+import AboutPage from '@/pages/about/ui/AboutPage';
+
+export default function Page() {
+  return <AboutPage />;
 }
-export default AboutPage
