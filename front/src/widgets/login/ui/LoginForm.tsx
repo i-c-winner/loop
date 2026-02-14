@@ -8,7 +8,9 @@ type LoginResponse = {
   email?: string
   full_name?: string
   is_active?: boolean
-  id?: number
+  id?: number | string
+  user_id?: number | string
+  userId?: number | string
   created_at?: string
   access_token?: string
   token_type?: string
@@ -16,6 +18,9 @@ type LoginResponse = {
 
 type AuthMeResponse = {
   role?: string
+  id?: number | string
+  user_id?: number | string
+  userId?: number | string
 }
 
 export const LoginForm = () => {
@@ -38,6 +43,26 @@ export const LoginForm = () => {
     } catch {
       return null
     }
+  }
+
+  const getUserId = (value: unknown): string | null => {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return String(value)
+    }
+    if (typeof value === 'string') {
+      const normalized = value.trim()
+      if (!normalized) return null
+      const asNumber = Number(normalized)
+      if (Number.isFinite(asNumber)) {
+        return String(asNumber)
+      }
+      return null
+    }
+    return null
+  }
+
+  const resolveUserId = (payload: { id?: unknown; user_id?: unknown; userId?: unknown }): string | null => {
+    return getUserId(payload.id) ?? getUserId(payload.user_id) ?? getUserId(payload.userId)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,17 +95,20 @@ export const LoginForm = () => {
 
       const loginData = (await loginResponse.json()) as LoginResponse
       let roleFromResponse = typeof loginData.role === 'string' ? loginData.role : null
+      let resolvedUserId = resolveUserId(loginData)
 
       if (!roleFromResponse && loginData.access_token) {
         roleFromResponse = getRoleFromToken(loginData.access_token)
       }
 
-      if (!roleFromResponse && loginData.access_token) {
+      if ((!roleFromResponse || !resolvedUserId)) {
         const meResponse = await fetch(`${apiBaseUrl}/api/v1/auth/me`, {
           method: 'GET',
-          headers: {
-            Authorization: `Bearer ${loginData.access_token}`,
-          },
+          headers: loginData.access_token
+            ? {
+                Authorization: `Bearer ${loginData.access_token}`,
+              }
+            : undefined,
           credentials: 'include',
         })
         if (meResponse.ok) {
@@ -88,6 +116,7 @@ export const LoginForm = () => {
           if (typeof meData.role === 'string') {
             roleFromResponse = meData.role
           }
+          resolvedUserId = resolvedUserId ?? resolveUserId(meData)
         }
       }
 
@@ -99,6 +128,9 @@ export const LoginForm = () => {
         localStorage.setItem('authToken', loginData.access_token)
       } else {
         localStorage.removeItem('authToken')
+      }
+      if (resolvedUserId) {
+        localStorage.setItem('user_id', resolvedUserId)
       }
 
       changeRole(roleFromResponse)
