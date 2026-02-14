@@ -1,4 +1,5 @@
 from .enums import ProjectRole, TaskStatus, UserRole
+from .list import ListCreate, ListRead, ListUpdate
 from .project import ProjectCreate, ProjectRead, ProjectUpdate
 from .project_member import ProjectMemberCreate, ProjectMemberRead
 from .task import TaskCreate, TaskRead, TaskUpdate
@@ -11,6 +12,9 @@ __all__ = [
     "ProjectUpdate",
     "ProjectMemberCreate",
     "ProjectMemberRead",
+    "ListCreate",
+    "ListRead",
+    "ListUpdate",
     "TaskCreate",
     "TaskRead",
     "TaskStatus",
